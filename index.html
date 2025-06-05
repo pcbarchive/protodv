@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/logos/icon.png">
+    <title>DozenValues</title>
+    <meta property="og:site_name" content="quark88.github.io/dozenvalues">
+    <meta property="og:title" content="DozenValues">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="DozenValues is a political test that aims to map differing political perspectives onto six axes.">
+    <meta property="og:url" content="https://quark88.github.io/dozenvalues">
+    <meta property="og:image" content="https://quark88.github.io/dozenvalues/assets/logos/embed.png">
+    <meta name="theme-color" content="#00a0ff" data-react-helmet="true">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="title">
+        <titleText>DozenValues</titleText>
+        <a id="version" title="🐍" target="_blank" href="https://youtu.be/5YMAdB7KbVg?t=42">V7.0.0</a>
+    </div>
+    <section id="homeSection">
+        <sectionTitle>Advanced political mapping quiz</sectionTitle>
+        <grid>
+            <cell>
+                Ownership
+                <div class="gridIcons">
+                    <a href="#level">
+                        <img class="gridIcon gridIconLeft" src="./assets/icons/level.svg">
+                    </a>
+                    <a href="#strata">
+                        <img class="gridIcon gridIconRight" src="./assets/icons/strata.svg">
+                    </a>
+                </div>
+            </cell>
+            <cell>
+                Production
+                <div class="gridIcons">
+                    <a href="#command">
+                        <img src="./assets/icons/command.svg" class="gridIcon gridIconLeft">
+                    </a>
+                    <a href="#demand">
+                        <img src="./assets/icons/demand.svg" class="gridIcon gridIconRight">
+                    </a>
+                </div>
+            </cell>
+            <cell>
+                Structure
+                <div class="gridIcons">
+                    <a href="#unity">
+                        <img src="./assets/icons/unity.svg" class="gridIcon gridIconLeft">
+                    </a>
+                    <a href="#autonomy">
+                        <img src="./assets/icons/autonomy.svg" class="gridIcon gridIconRight">
+                    </a>
+                </div>
+            </cell>
+            <cell>
+                Legality
+                <div class="gridIcons">
+                    <a href="#volition">
+                        <img src="./assets/icons/volition.svg" class="gridIcon gridIconLeft">
+                    </a>
+                    <a href="#obligation">
+                        <img src="./assets/icons/obligation.svg" class="gridIcon gridIconRight">
+                    </a>
+                </div>
+            </cell>
+            <cell>
+                Identity
+                <div class="gridIcons">
+                    <a href="#inclusion">
+                        <img src="./assets/icons/inclusion.svg" class="gridIcon gridIconLeft">
+                    </a>
+                    <a href="#supremacy">
+                        <img src="./assets/icons/supremacy.svg" class="gridIcon gridIconRight">
+                    </a>
+                </div>
+            </cell>
+            <cell>
+                Culture
+                <div class="gridIcons">
+                    <a href="#sanctity">
+                        <img src="./assets/icons/sanctity.svg" class="gridIcon gridIconLeft">
+                    </a>
+                    <a href="#novelty">
+                        <img src="./assets/icons/novelty.svg" class="gridIcon gridIconRight">
+                    </a>
+                </div>
+            </cell>
+        </grid>
+        <div id="homeButtons">
+            <button class="plus1 start" onclick="show('instructionsSection')">
+                <span>Begin</span>
+            </button>
+            <div class="navButtons">
+                <button class="navButton" onclick="show('matchesSection')">Matches</button>
+                <button class="navButton" onclick="show('questionsSection')">Questions</button>
+            </div>
+            <div class="navButtons">
+                <button class="navButton" onclick="show('listerSection')">Lister</button>
+                <button class="navButton" onclick="show('customSection')">Custom</button>
+                <button class="navButton" onclick="show('aboutSection')">About</button>
+            </div>
+        </div>
+        <div id="explanations">
+            <h2>What is DozenValues?</h2>
+            <p>Whatever.</p>
+            <h2>What are the 12 values?</h2>
+            <p>Every value is paired to its opposite so as to form 6 independent axes:</p>
+            <div id="axisExplanations">
+                <axisExplanation>
+                    <value>
+                        <valueName id="level">Level</valueName>
+                        <valueDescription>Those with higher Level scores believe that productive assets deserve to be placed under collective stewardship. They tend to support worker self-management, communal land trusts, and social access to capital.</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Ownership
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="strata">Strata</valueName>
+                        <valueDescription>Those with higher Strata scores believe that hierarchy in the economy organizes merit and incentives ideally. They tend to support private workplace control, claims-based property, and class systems.</valueDescription>
+                    </value>
+                </axisExplanation>
+                <axisExplanation>
+                    <value>
+                        <valueName id="command">Command</valueName>
+                        <valueDescription>Those with higher Command scores believe that tight coordination is needed throughout supply chains. They tend to support price controls, strategic subsidies, and industry quotas.</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Production
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="demand">Demand</valueName>
+                        <valueDescription>Those with higher Demand scores believe that producers should adapt fluidly to consumption signals. They tend to support market pricing, entrepreneurial initiative, and laissez-faire.</valueDescription>
+                    </value>
+                </axisExplanation>
+                <axisExplanation>
+                    <value>
+                        <valueName id="unity">Unity</valueName>
+                        <valueDescription>Those with higher Unity scores believe that governance requires a single unambiguous chain of command. They tend to support sturdy leadership, central management, and autocracy.</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Structure
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="autonomy">Autonomy</valueName>
+                        <valueDescription>Those with higher Autonomy scores believe that social order must emerge deliberately from the bottom-up. They tend to support plural interests, self-organization, and anarchy.</valueDescription>
+                    </value>
+                </axisExplanation>
+                <axisExplanation>
+                    <value>
+                        <valueName id="volition">Volition</valueName>
+                        <valueDescription>Those with higher Volition scores believe that personal commitments are best defined without coercion. They tend to support individualism, free expression, and bodily autonomy.</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Legality
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="obligation">Obligation</valueName>
+                        <valueDescription>Those with higher Obligation scores believe that being a member of society comes with inherent civic duties. They tend to support intrinsic social bonds, cohesive conformity, and paternalism.
+                        </valueDescription>
+                    </value>
+                </axisExplanation>
+                <axisExplanation>
+                    <value>
+                        <valueName id="inclusion">Inclusion</valueName>
+                        <valueDescription>Those with higher Inclusion scores believe that [Broad belief]. They tend to support [Policy #1], [Policy #2], and [Policy #3].</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Identity
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="supremacy">Supremacy</valueName>
+                        <valueDescription>Those with higher Supremacy scores believe that [Broad belief]. They tend to support [Policy #1], [Policy #2], and [Policy #3].</valueDescription>
+                    </value>
+                </axisExplanation>
+                <axisExplanation>
+                    <value>
+                        <valueName id="sanctity">Sanctity</valueName>
+                        <valueDescription>Those with higher Sanctity scores believe that time-tested norms encode irreducible wisdom towards flourishing. They tend to support traditional aesthetics, religious fundamentalism, and perennial virtues.</valueDescription>
+                    </value>
+                    <axisArrow>
+                        Culture
+                        <img src="./assets/icons/arrow.svg">
+                    </axisArrow>
+                    <value>
+                        <valueName id="novelty">Novelty</valueName>
+                        <valueDescription>Those with higher Novelty scores believe that cultural development demands perpetual adaptation to arising contexts. They tend to support artistic rejuvenation, metaphysical reassessment, and moral transvaluation.</valueDescription>
+                    </value>
+                </axisExplanation>
+            </div>
+            <h2>What is the closest match?</h2>
+            <p>Once you finish the quiz, your answers will be computed, and an ideology will be chosen from a list to fit as closely as possible the percentages you have been given.</p>
+        </div>
+    </section>
+    <section id="instructionsSection">
+        <sectionTitle>Instructions</sectionTitle>
+        <text>You will be presented with 132 statements and a spectrum ranging from Agree to Disagree. Click the button
+            that fits your opinion.</text>
+        <div id="instructionsButtons">
+            <button class="verticalQuizButton plus1" onclick="show('quizSection')"><span>Got it</span></button>
+            <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        </div>
+    </section>
+    <section id="quizSection">
+        <sectionTitle>Quiz</sectionTitle>
+        <h3 id="counter">Loading...</h3>
+        <div id="progressBar">
+            <div id="progressBarIndicator"></div>
+        </div>
+        <text id="question">Loading...</text>
+        <div id="verticalQuizButtons">
+            <button class="verticalQuizButton plus2" onclick="addScore(1)"><span>Strongly agree</span></button>
+            <button class="verticalQuizButton plus1" onclick="addScore(.5)"><span>Agree</span></button>
+            <button class="verticalQuizButton neutral" onclick="addScore(0)"><span>Neutral</span></button>
+            <button class="verticalQuizButton minus1" onclick="addScore(-.5)"><span>Disagree</span></button>
+            <button class="verticalQuizButton minus2" onclick="addScore(-1)"><span>Strongly disagree</span></button>
+            <button class="back" onclick="back()"><span>Back</span></button>
+        </div>
+        <div id="horizontalQuizButtons">
+            <div>
+                <button class="horizontalQuizButton plus2" onclick="addScore(1)">&#x00BB;</button>
+                <button class="horizontalQuizButton plus1" onclick="addScore(.5)">&gt;</button>
+                <button class="horizontalQuizButton neutral" onclick="addScore(0)">&#x25CF;</button>
+                <button class="horizontalQuizButton minus1" onclick="addScore(-.5)">&lt;</button>
+                <button class="horizontalQuizButton minus2" onclick="addScore(-1)">&#x00AB;</button>
+            </div>
+            <button class="back" onclick="back()"><span>Back</span></button>
+        </div>
+    </section>
+    <section id="resultsSection">
+        <sectionTitle>Results</sectionTitle>
+        <canvas id="resultsCanvas" width="800" height="880"></canvas>
+        <button class="back" onclick="show('listerSection')"><span>Lister</span></button>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <section id="matchesSection">
+        <sectionTitle>Matches</sectionTitle>
+        <div id="matchesTools">
+            <button id="matchesLeft" onclick="match(selectedIdeology-1)">&#x00AB;</button>
+            <select id="matchesDropdown"></select>
+            <button id="matchesRight" onclick="match(selectedIdeology+1)">&#x00BB;</button>
+        </div>
+        <canvas id="matchesCanvas" width="800" height="880"></canvas>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <section id="questionsSection">
+        <sectionTitle>Questions</sectionTitle>
+        <div id="valueSelectors">
+            <img src="./assets/icons/level.svg" id="levelSelector" class="gridIconLeft">
+            <img src="./assets/icons/strata.svg" id="strataSelector" class="gridIconRight">
+            <img src="./assets/icons/command.svg" id="commandSelector" class="gridIconLeft">
+            <img src="./assets/icons/demand.svg" id="demandSelector" class="gridIconRight">
+            <img src="./assets/icons/unity.svg" id="unitySelector" class="gridIconLeft">
+            <img src="./assets/icons/autonomy.svg" id="autonomySelector" class="gridIconRight">
+            <img src="./assets/icons/volition.svg" id="volitionSelector" class="gridIconLeft">
+            <img src="./assets/icons/obligation.svg" id="obligationSelector" class="gridIconRight">
+            <img src="./assets/icons/inclusion.svg" id="inclusionSelector" class="gridIconLeft">
+            <img src="./assets/icons/supremacy.svg" id="supremacySelector" class="gridIconRight">
+            <img src="./assets/icons/sanctity.svg" id="sanctitySelector" class="gridIconLeft">
+            <img src="./assets/icons/novelty.svg" id="noveltySelector" class="gridIconRight">
+        </div>
+        <div id="questionCardCount"></div>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div id="questionsHolder"></div>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <section id="listerSection">
+        <sectionTitle>Lister</sectionTitle>
+        <div id="listHolder"></div>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <section id="customSection">
+        <sectionTitle>Custom</sectionTitle>
+        <canvas id="customCanvas" width="800" height="880"></canvas>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <section id="aboutSection">
+        <sectionTitle>About</sectionTitle>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+    </section>
+    <div id="footer">
+        <a id="creator" title="Quark on GitHub" target="_blank" href="https://github.com/QUARK88">Quark 2025</a>
+        <div id="socials"><img title="Quark on Discord" src="./assets/logos/discord.svg" class="socialIcon" onclick="navigator.clipboard.writeText('realquark');confirm('Discord tag copied! (realquark)')"><a target="_blank" href="https://x.com/RenaudBeaulieuQ"><img title="Quark on X" src="./assets/logos/x.svg" class="socialIcon"></a><img title="Quark on Tlon" src="./assets/logos/tlon.svg" class="socialIcon" onclick="navigator.clipboard.writeText('~worlyt-nillex');confirm('Urbit ID copied! (~worlyt-nillex)')" </img><a target="_blank" href="https://www.reddit.com/user/QK_QUARK88"><img title="Quark on Reddit" src="./assets/logos/reddit.svg" class="socialIcon"></a></div>
+    </div>
+</body>
+<script src="./script.js"></script>
+
+</html>

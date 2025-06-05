@@ -1,0 +1,644 @@
+:root {
+    --html: hsl(0 0% 8%);
+    --body: hsl(0 0% 12.5%);
+    --text: hsl(0 0% 100%);
+    --button: hsl(0 0% 25%);
+    --shadow: 0 .25vw .5vw 0 hsla(0 0% 0% / .125), 0 .5vw 1vw 0 hsla(0 0% 0% / .125);
+    --level: #ff0c57;
+    --strata: #1fe545;
+    --command: #b900d3;
+    --demand: #ffc100;
+    --unity: #0cd1a5;
+    --autonomy: #ff3a17;
+    --volition: #ffff00;
+    --obligation: #2876ff;
+    --inclusion: #ff15a8;
+    --supremacy: #ff7b09;
+    --sanctity: #9bf122;
+    --novelty: #894efa;
+    --plus2: hsl(210 100% 30%);
+    --plus1: hsl(210 75% 50%);
+    --neutral: hsl(0 0% 60%);
+    --minus1: hsl(0 75% 50%);
+    --minus2: hsl(0 100% 30%);
+}
+
+@font-face {
+    font-family: cocogoose;
+    src: url(./assets/fonts/cocogoose.otf);
+}
+
+@font-face {
+    font-family: brandontext;
+    src: url(./assets/fonts/brandontext.otf);
+}
+
+* {
+    font-family: brandontext;
+    font-size: 0;
+    color: var(--text);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /*outline-offset: -1px !important;
+    outline: solid 1px #0f0 !important;
+    /*For wireframe kiddies*/
+}
+
+html {
+    height: 100%;
+    padding: 0 6vw;
+    background-color: var(--html);
+    scrollbar-width: thin;
+    scrollbar-color: var(--neutral) var(--body);
+    scroll-behavior: smooth;
+    outline: none !important;
+}
+
+body {
+    min-height: 100%;
+    padding: 0 4vw 2vw;
+    background-color: var(--body);
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5vw;
+}
+
+.active {
+    display: flex;
+}
+
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+    color: var(--text);
+    text-decoration: none;
+}
+
+titleText {
+    font-family: cocogoose;
+    font-size: 6vw;
+    display: inline-block;
+}
+
+#version {
+    font-family: cocogoose;
+    font-size: 1.5vw;
+    position: absolute;
+    margin: 1vw 0 0 0.5vw;
+}
+
+#homeSection {
+    gap: 2vw;
+}
+
+sectionTitle {
+    font-size: 2vw;
+    font-family: cocogoose;
+}
+
+grid {
+    width: 100%;
+    display: grid;
+    gap: 2vw;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+cell {
+    display: flex;
+    gap: .5vw;
+    flex-direction: column;
+    font-size: 2.5vw;
+    font-family: cocogoose;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+.gridIcons {
+    display: flex;
+    gap: 1vw;
+    width: 100%;
+    justify-content: center;
+}
+
+.gridIcon {
+    width: 100%;
+    cursor: pointer;
+    transition: ease-in-out .2s;
+}
+
+.gridIconLeft {
+    border-radius: 25% 0 0 25%;
+}
+
+.gridIconRight {
+    border-radius: 0 25% 25% 0;
+}
+
+.gridIcon:hover {
+    scale: 1.05;
+}
+
+button,
+#matchesDropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--button);
+    width: 32vw;
+    height: 5vw;
+    border-radius: 1.5vw;
+    transition: .2s;
+}
+
+button,
+button>span,
+#matchesDropdown {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+button:hover,
+#matchesDropdown:hover,
+listElement:hover {
+    filter: brightness(1.15);
+    box-shadow: var(--shadow);
+}
+
+button:active {
+    scale: .975;
+}
+
+#homeButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25vw;
+    width: 35vw;
+}
+
+.start {
+    width: 100%;
+    height: 5.5vw;
+}
+
+.back {
+    width: 12vw;
+    height: 4vw;
+}
+
+.start>span,
+.back>span,
+.verticalQuizButton>span {
+    transition: all .25s ease-in-out;
+    position: relative;
+}
+
+.start>span {
+    font-size: 2.5vw;
+}
+
+.back>span {
+    font-size: 1.5vw;
+}
+
+.start>span::after,
+.back>span::before,
+.verticalQuizButton>span::after {
+    position: absolute;
+    opacity: 0;
+    transition: all .25s ease-in-out;
+}
+
+.start>span::after {
+    content: "\00BB";
+    right: -2.5vw;
+    top: -.15vw;
+}
+
+.back>span::before {
+    content: "\00AB";
+    left: -1.5vw;
+    top: -.05vw;
+}
+
+
+.verticalQuizButton>span::after {
+    content: "\00BB";
+    right: -2vw;
+    top: -.1vw;
+}
+
+.start:hover>span,
+.verticalQuizButton:hover>span {
+    margin-right: 2.25vw;
+}
+
+.back:hover>span {
+    margin-left: 1.75vw;
+}
+
+.start:hover>span::after,
+.back:hover>span::before,
+.verticalQuizButton:hover>span::after {
+    opacity: 1;
+}
+
+.navButtons {
+    width: 100%;
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+}
+
+.navButton {
+    width: 100%;
+    font-size: 1.25vw;
+    height: 4vw;
+    border-radius: 1vw;
+}
+
+.navButton:hover,
+listElement:hover {
+    scale: 1.025;
+}
+
+#explanations {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+#axisExplanations {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+axisExplanation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+value {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5vw;
+}
+
+valueName {
+    position: relative;
+    display: inline-block;
+    font-size: 3vw;
+    font-family: cocogoose;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+valueName::after {
+    content: "";
+    position: absolute;
+    left: -.75vw;
+    right: -.75vw;
+    bottom: .25vw;
+    height: 0.25vw;
+    background: currentColor;
+}
+
+#level {
+    color: var(--level);
+}
+
+#strata {
+    color: var(--strata);
+}
+
+#command {
+    color: var(--command);
+}
+
+#demand {
+    color: var(--demand);
+}
+
+#unity {
+    color: var(--unity);
+}
+
+#autonomy {
+    color: var(--autonomy);
+}
+
+#volition {
+    color: var(--volition);
+}
+
+#obligation {
+    color: var(--obligation);
+}
+
+#inclusion {
+    color: var(--inclusion);
+}
+
+#supremacy {
+    color: var(--supremacy);
+}
+
+#sanctity {
+    color: var(--sanctity);
+}
+
+#novelty {
+    color: var(--novelty);
+}
+
+valueDescription {
+    font-size: 1.5vw;
+}
+
+axisArrow {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.75vw;
+    gap: 1vw;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 4vw;
+}
+
+p {
+    font-size: 2vw;
+}
+
+text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+    padding: 2vw;
+    background-color: var(--button);
+    width: 60vw;
+    height: 8vw;
+    border-radius: 2vw;
+}
+
+#instructionsButtons,
+#verticalQuizButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5vw;
+    width: 32vw;
+}
+
+#counter {
+    font-size: 1.5vw;
+}
+
+#progressBar {
+    width: 60vw;
+    height: .25vw;
+    margin: 0 2vw;
+    background-color: var(--button);
+}
+
+#progressBarIndicator {
+    width: 0;
+    height: .25vw;
+    background-color: var(--text);
+    transition: .5s;
+}
+
+.plus2 {
+    background-color: var(--plus2);
+}
+
+.plus1 {
+    background-color: var(--plus1);
+}
+
+.neutral {
+    background-color: var(--neutral);
+}
+
+.minus1 {
+    background-color: var(--minus1);
+}
+
+.minus2 {
+    background-color: var(--minus2);
+}
+
+.verticalQuizButton {
+    height: 4vw;
+}
+
+#horizontalQuizButtons {
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+    align-items: center;
+}
+
+#horizontalQuizButtons div {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: .5vw;
+    align-items: center;
+}
+
+#horizontalQuizButtons div::after {
+    content: "Disagree";
+    text-align: right;
+    margin-right: .5vw;
+}
+
+#horizontalQuizButtons div::before {
+    content: "Agree";
+    text-align: left;
+    margin-left: .5vw;
+}
+
+#horizontalQuizButtons div::after,
+#horizontalQuizButtons div::before {
+    font-size: 1.5vw;
+    font-family: cocogoose;
+    text-transform: uppercase;
+    width: 10vw;
+}
+
+.horizontalQuizButton {
+    width: 8vw;
+    height: 6vw;
+    font-size: 3vw;
+}
+
+canvas {
+    outline: .25vw solid var(--button);
+    outline-offset: -.25vw;
+    border-radius: 2vw;
+    width: 60vw;
+    cursor: pointer;
+}
+
+#matchesTools {
+    display: flex;
+    width: 60vw;
+    justify-content: space-between;
+    gap: 1vw;
+    margin-bottom: 1vw;
+}
+
+#matchesTools button {
+    width: 8vw;
+}
+
+#matchesLeft,
+#matchesRight {
+    font-size: 2.5vw;
+}
+
+#matchesDropdown {
+    flex-grow: 1;
+    text-align: left !important;
+    padding-left: 1.5vw;
+}
+
+#matchesDropdown option {
+    font-family: brandontext;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+#valueSelectors {
+    display: flex;
+    gap: 1vw;
+    margin: .5vw 0;
+}
+
+#valueSelectors img {
+    width: calc((100% - 11 * 1vw) / 12);
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    outline: 2px solid var(--text);
+    transition: ease-in-out .2s;
+}
+
+#valueSelectors img:hover {
+    scale: 1.05;
+    box-shadow: var(--shadow)
+}
+
+.unselected {
+    outline: none !important;
+}
+
+#questionCardCount {
+    font-size: 2vw;
+    font-family: cocogoose;
+}
+
+#questionsHolder {
+    display: flex;
+    gap: 1vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: .5vw 0;
+}
+
+questionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 36vw;
+    height: 12vw;
+    background-color: var(--button);
+    border-radius: 1vw;
+    padding: 1.5vw;
+    gap: 1vw;
+    font-family: brandontext;
+    font-size: 1.5vw;
+}
+
+questionCard div {
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+}
+
+questionCard img {
+    width: 6vw;
+}
+
+#listHolder {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+listElement {
+    background-color: var(--button);
+    border-radius: 1vw;
+    padding: .5vw;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+    margin-top: 12vw;
+}
+
+#creator {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+#socials {
+    display: flex;
+    gap: 1vw;
+}
+
+#socials a {
+    border-radius: 100%;
+}
+
+.socialIcon {
+    height: 4vw;
+    width: 4vw;
+    cursor: pointer;
+    border-radius: 100%;
+    transition: ease-in-out .1s;
+}
+
+.socialIcon:hover {
+    scale: 1.1;
+    box-shadow: var(--shadow)
+}
