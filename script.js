@@ -271,10 +271,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             question.effect.forEach((e, j) => {
                 if (e > 0) {
                     questionCard.classList.add(a[j].p)
-                    for (let k = 0; k < e; k++)iconContainer.innerHTML += `<img src="./assets/icons/${values[j * 2]}.svg" class="valueIcon" data-value="${values[j * 2]}">`
+                    for (let k = 0; k < e; k++)iconContainer.innerHTML += `<img src="./assets/icons/round/${values[j * 2]}.svg" class="valueIcon" data-value="${values[j * 2]}">`
                 } else if (e < 0) {
                     questionCard.classList.add(a[j].n)
-                    for (let k = 0; k < -e; k++)iconContainer.innerHTML += `<img src="./assets/icons/${values[j * 2 + 1]}.svg" class="valueIcon" data-value="${values[j * 2 + 1]}">`
+                    for (let k = 0; k < -e; k++)iconContainer.innerHTML += `<img src="./assets/icons/round/${values[j * 2 + 1]}.svg" class="valueIcon" data-value="${values[j * 2 + 1]}">`
                 }
             })
             questionCard.appendChild(iconContainer)
