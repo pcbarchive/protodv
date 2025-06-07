@@ -713,8 +713,70 @@ listElement {
 }
 
 @media only screen and (max-width: 800px) {
+    html {
+        padding: 0;
+    }
+
+    body {
+        padding: 2vw 6vw 4vw;
+    }
+
+    titleText {
+        font-size: 8vw;
+    }
+
+    #version {
+        font-size: 2.5vw;
+        margin: 2vw 0 0 0.5vw;
+    }
+
+    sectionTitle {
+        font-size: 4vw;
+    }
+
+    grid {
+        gap: 2vw;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    cell {
+        font-size: 4vw;
+    }
+
+    .gridIcons {
+        gap: 2vw;
+    }
+
+    #homeButtons {
+        gap: 2.25vw;
+        width: 100%;
+    }
+
+    .start>span {
+        font-size: 5vw;
+    }
+
+    .start>span::after {
+        right: -4.5vw;
+        top: -.15vw;
+    }
+
+    .start,
+    .navButton {
+        height: 12vw;
+        font-size: 3vw;
+    }
+
+    .navButtons {
+        gap: 2vw;
+    }
+
+    axisExplanation {
+        flex-direction: column;
+    }
+
     value {
-        width: 40%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -724,7 +786,7 @@ listElement {
     valueName {
         position: relative;
         display: inline-block;
-        font-size: 3vw;
+        font-size: 8vw;
         font-family: cocogoose;
         text-transform: uppercase;
         text-decoration: none;
@@ -741,17 +803,11 @@ listElement {
     }
 
     valueDescription {
-        font-size: 1.5vw;
+        font-size: 3.75vw;
     }
 
     axisArrow {
-        width: 15%;
-        display: flex;
-        flex-direction: column;
-        font-size: 1.75vw;
-        gap: 1vw;
-        text-transform: uppercase;
-        font-weight: 600;
+        display: none;
     }
 
     questionCard {
@@ -769,5 +825,23 @@ listElement {
 
     questionCard img {
         width: 10vw;
+    }
+
+    #footer {
+        gap: 4vw;
+        margin-top: 24vw;
+    }
+
+    #creator {
+        font-size: 6vw;
+    }
+
+    #socials {
+        gap: 4vw;
+    }
+
+    .socialIcon {
+        height: 12vw;
+        width: 12vw;
     }
 }
