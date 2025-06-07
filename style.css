@@ -290,10 +290,10 @@ axisExplanation {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 2vw;
 }
 
 value {
-    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -372,7 +372,6 @@ valueDescription {
 }
 
 axisArrow {
-    width: 15%;
     display: flex;
     flex-direction: column;
     font-size: 1.75vw;
@@ -453,10 +452,7 @@ text {
 }
 
 #horizontalQuizButtons {
-    display: flex;
-    flex-direction: column;
-    gap: .5vw;
-    align-items: center;
+    display: none;
 }
 
 #horizontalQuizButtons div {
@@ -488,8 +484,81 @@ text {
 
 .horizontalQuizButton {
     width: 8vw;
-    height: 6vw;
+    height: 5vw;
     font-size: 3vw;
+}
+
+#quizButtonsSwitch {
+    position: relative;
+    width: 6vw;
+    height: 3vw;
+}
+
+#orientationToggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--button);
+    transition: .4s;
+    border-radius: 2vw;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 2vw;
+    width: 2vw;
+    left: .5vw;
+    bottom: .5vw;
+    background-color: var(--text);
+    transition: .4s;
+    border-radius: 100%;
+    z-index: 2;
+}
+
+.slider:hover {
+    filter: brightness(1.15);
+    box-shadow: var(--shadow);
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25vw;
+    height: 1.25vw;
+    transition: opacity 0.25s;
+    pointer-events: none;
+}
+
+.horizontal {
+    left: 1vw;
+    opacity: 0;
+}
+
+.vertical {
+    right: 1vw;
+}
+
+input:checked+.slider:before {
+    transform: translateX(3vw);
+}
+
+input:checked+.slider .horizontal {
+    opacity: 1;
+}
+
+input:checked+.slider .vertical {
+    opacity: 0;
 }
 
 canvas {
@@ -592,7 +661,7 @@ questionCard img {
 }
 
 #listHolder {
-    width: 50%;
+    width: 50vw;
     display: flex;
     flex-direction: column;
     gap: .5vw;
@@ -641,4 +710,64 @@ listElement {
 .socialIcon:hover {
     scale: 1.1;
     box-shadow: var(--shadow)
+}
+
+@media only screen and (max-width: 800px) {
+    value {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5vw;
+    }
+
+    valueName {
+        position: relative;
+        display: inline-block;
+        font-size: 3vw;
+        font-family: cocogoose;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    valueName::after {
+        content: "";
+        position: absolute;
+        left: -.75vw;
+        right: -.75vw;
+        bottom: .25vw;
+        height: 0.25vw;
+        background: currentColor;
+    }
+
+    valueDescription {
+        font-size: 1.5vw;
+    }
+
+    axisArrow {
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.75vw;
+        gap: 1vw;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    questionCard {
+        width: 100%;
+        height: 16vw;
+        border-radius: 2vw;
+        padding: 2vw;
+        gap: 2vw;
+        font-size: 2.5vw;
+    }
+
+    questionCard div {
+        gap: 1.5vw;
+    }
+
+    questionCard img {
+        width: 10vw;
+    }
 }

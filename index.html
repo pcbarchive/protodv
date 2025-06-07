@@ -211,7 +211,7 @@
         </div>
     </section>
     <section id="quizSection">
-        <sectionTitle>Quiz</sectionTitle>
+        <sectionTitle id="quizTitle">Quiz</sectionTitle>
         <h3 id="counter">Loading...</h3>
         <div id="progressBar">
             <div id="progressBarIndicator"></div>
@@ -223,7 +223,6 @@
             <button class="verticalQuizButton neutral" onclick="addScore(0)"><span>Neutral</span></button>
             <button class="verticalQuizButton minus1" onclick="addScore(-.5)"><span>Disagree</span></button>
             <button class="verticalQuizButton minus2" onclick="addScore(-1)"><span>Strongly disagree</span></button>
-            <button class="back" onclick="back()"><span>Back</span></button>
         </div>
         <div id="horizontalQuizButtons">
             <div>
@@ -233,8 +232,15 @@
                 <button class="horizontalQuizButton minus1" onclick="addScore(-.5)">&lt;</button>
                 <button class="horizontalQuizButton minus2" onclick="addScore(-1)">&#x00AB;</button>
             </div>
-            <button class="back" onclick="back()"><span>Back</span></button>
         </div>
+        <button class="back" onclick="back()"><span>Back</span></button>
+        <label id="quizButtonsSwitch">
+            <input type="checkbox" id="orientationToggle">
+            <span class="slider">
+                <img src="./assets/icons/horizontal.svg" class="icon horizontal">
+                <img src="./assets/icons/vertical.svg" class="icon vertical">
+            </span>
+        </label>
     </section>
     <section id="resultsSection">
         <sectionTitle>Results</sectionTitle>

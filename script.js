@@ -6,7 +6,7 @@ function getElements() {
     })
 }
 const elements = getElements()
-const { counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, resultsCanvas, matchesCanvas, matchesDropdown, valueSelectors, listHolder, customCanvas } = elements
+const { quizTitle, counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, orientationToggle, resultsCanvas, matchesCanvas, matchesDropdown, valueSelectors, listHolder, customCanvas } = elements
 const date = new Date().toISOString().slice(0, 10)
 const axes = ["Ownership", "Production", "Structure", "Legality", "Identity", "Culture"]
 const values = ["level", "strata", "command", "demand", "unity", "autonomy", "volition", "obligation", "inclusion", "supremacy", "sanctity", "novelty"]
@@ -84,12 +84,13 @@ function resetQuiz() {
     updateLister()
     updateQuestion()
 }
-function toggleButtons() {
-    const display = isToggled ? ["flex", "none"] : ["none", "flex"]
+orientationToggle.addEventListener('change', function () {
+    const display = isToggled ? ["none", "flex"] : ["flex", "none"]
     horizontalQuizButtons.style.display = display[0]
     verticalQuizButtons.style.display = display[1]
     isToggled = !isToggled
-}
+    setTimeout(() => { requestAnimationFrame(() => { quizTitle.scrollIntoView({ behavior: 'smooth' }) }) }, 25)
+})
 function match(ideologyIndex) {
     if (ideologyIndex >= ideologies.length) {
         selectedIdeology = 0
