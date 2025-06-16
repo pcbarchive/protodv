@@ -715,7 +715,7 @@ listElement {
     box-shadow: var(--shadow)
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
     html {
         padding: 0;
     }

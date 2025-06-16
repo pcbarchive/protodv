@@ -36,7 +36,6 @@ function show(section) {
     window.scrollTo({ top: 0, behavior: "instant" })
     sections.forEach(id => document.getElementById(id).classList.remove("active"))
     document.getElementById(section).classList.add("active")
-    if (section === "homeSection") resetQuiz()
 }
 function updateQuestion() {
     question.textContent = questions[progression].text
@@ -80,7 +79,7 @@ function resetQuiz() {
     progression = 0
     answers = []
     axisScores = [0, 0, 0, 0, 0, 0]
-    resultsPercentages = [50, 50, 50, 50, 50, 50]
+    resultsPercentages = [50, 70, 100, 50, 50, 50]
     updateLister()
     updateQuestion()
 }
@@ -225,6 +224,12 @@ function updateQuestionVisibility() {
     questionCardCount.textContent = `Showing ${visibleCount} of ${questions.length} questions`
 }
 function updateLister() {
+    ideologies.forEach((ideology, i) => {
+        const option = document.createElement("option")
+        option.value = i
+        option.textContent = ideology.name
+        matchesDropdown.appendChild(option)
+    })
     ideologies.forEach(ideology => {
         let totalScore = 0
         let totalWeight = 0
@@ -247,10 +252,6 @@ function updateLister() {
         listElement.textContent = `${ideology.name} (${ideology.similarity}%)`
         listElement.addEventListener("click", () => match(i))
         listHolder.appendChild(listElement)
-        const option = document.createElement("option")
-        option.value = i
-        option.textContent = ideology.name
-        matchesDropdown.appendChild(option)
     })
 }
 document.addEventListener("DOMContentLoaded", async () => {
@@ -288,16 +289,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 updateQuestionVisibility()
             })
         })
-        updateQuestion()
+        resetQuiz()
         updateQuestionVisibility()
-        updateLister()
+        match(selectedIdeology)
         document.fonts.ready.then(() => {
             drawCanvas(resultsCanvas)
             drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
             drawCanvas(customCanvas)
             customCanvas.addEventListener("click", handleCustomCanvasClick)
+            show("homeSection")
         })
-        show("homeSection")
     } catch (error) {
         console.error("Error fetching resources:", error)
     }
