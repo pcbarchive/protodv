@@ -349,7 +349,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         calculateMaxValues()
         valueNames.forEach((value, i) => {
             const valueSelector = document.createElement("img")
-            valueSelector.src = `./assets/icons/${value}.svg`
+            valueSelector.src = `./assets/icons/${value.toLowerCase()}.svg`
             valueSelector.id = `${value}Selector`
             if (i % 2 === 0) {
                 valueSelector.classList.add("gridIconLeft")
