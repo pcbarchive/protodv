@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         valueNames.forEach((value, i) => {
             const valueSelector = document.createElement("img")
             valueSelector.src = `./assets/icons/${value.toLowerCase()}.svg`
-            valueSelector.id = `${value}Selector`
+            valueSelector.id = `${value.toLowerCase()}Selector`
             if (i % 2 === 0) {
                 valueSelector.classList.add("gridIconLeft")
             } else {
