@@ -329,7 +329,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             homeButtonName.textContent = data.homeButtonNames[i]
         })
         const axisExplanations = document.querySelectorAll("#axisExplanations > axisExplanation")
-        axisExplanations.forEach((axisExplanation, i) => {
+        let i = 0
+        axisExplanations.forEach(axisExplanation => {
             const values = axisExplanation.querySelectorAll("value")
             const axisArrow = axisExplanation.querySelector("axisArrow")
             values[0].querySelector("valueName").textContent = data.valueNames[i].toLowerCase()
@@ -339,6 +340,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             axisArrow.innerHTML = `${data.axisNames[axisIndex]}<img src="./assets/icons/arrow.svg">`
             values[1].querySelector("valueName").textContent = data.valueNames[i].toLowerCase()
             values[1].querySelector("valueDescription").textContent = data.valueExplanations[i]
+            i++
         })
         ideologies.forEach((ideology, i) => {
             const option = document.createElement("option")
