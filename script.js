@@ -106,7 +106,7 @@ function match(ideologyIndex) {
     }
     matchesDropdown.selectedIndex = selectedIdeology
     matchesPercentages = [...ideologies[selectedIdeology].stats]
-    const ctx = matchesCanvas.getContext('2d')
+    const ctx = matchesCanvas.getContext("2d")
     ctx.clearRect(0, 0, matchesCanvas.width, matchesCanvas.height)
     drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
     show("matchesSection")
@@ -345,6 +345,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             option.value = i
             option.textContent = ideology.name
             matchesDropdown.appendChild(option)
+        })
+        matchesDropdown.addEventListener("change", function () {
+            match(this.selectedIndex)
         })
         calculateMaxValues()
         valueNames.forEach((value, i) => {
