@@ -2,6 +2,7 @@
     --html: hsl(0 0% 8%);
     --body: hsl(0 0% 12.5%);
     --text: hsl(0 0% 100%);
+    --blackText: hsl(0, 0%, 0%);
     --button: hsl(0 0% 25%);
     --shadow: 0 .25vw .5vw 0 hsla(0 0% 0% / .125), 0 .5vw 1vw 0 hsla(0 0% 0% / .125);
     --level: #ff0c57;
@@ -84,13 +85,13 @@ a:active {
     text-decoration: none;
 }
 
-titleText {
+#title {
     font-family: cocogoose;
     font-size: 6vw;
     display: inline-block;
 }
 
-#version {
+#versionText {
     font-family: cocogoose;
     font-size: 1.5vw;
     position: absolute;
@@ -419,7 +420,6 @@ text {
 #progressBar {
     width: 60vw;
     height: .25vw;
-    margin: 0 2vw;
     background-color: var(--button);
 }
 
@@ -491,7 +491,7 @@ text {
     font-size: 3vw;
 }
 
-#quizButtonsSwitch {
+.switch {
     position: relative;
     width: 6vw;
     height: 3vw;
@@ -543,12 +543,12 @@ text {
     pointer-events: none;
 }
 
-.horizontal {
+.toggledOff {
     left: 1vw;
     opacity: 0;
 }
 
-.vertical {
+.toggledOn {
     right: 1vw;
 }
 
@@ -556,11 +556,11 @@ input:checked+.slider:before {
     transform: translateX(3vw);
 }
 
-input:checked+.slider .horizontal {
+input:checked+.slider .toggledOff {
     opacity: 1;
 }
 
-input:checked+.slider .vertical {
+input:checked+.slider .toggledOn {
     opacity: 0;
 }
 
@@ -569,7 +569,14 @@ canvas {
     outline-offset: -.25vw;
     border-radius: 2vw;
     width: 60vw;
-    cursor: pointer;
+}
+
+#questionsSection,
+#matchesSection,
+#listerSection,
+#customSection,
+#aboutSection {
+    gap: 1vw;
 }
 
 #matchesTools {
@@ -604,7 +611,6 @@ canvas {
 #valueSelectors {
     display: flex;
     gap: 1vw;
-    margin: .5vw 0;
 }
 
 #valueSelectors img {
@@ -625,7 +631,9 @@ canvas {
     outline: none !important;
 }
 
-#questionCardCount {
+#questionCardCount,
+#proportionTypeIndicator,
+#listerPercentages {
     font-size: 2vw;
     font-family: cocogoose;
 }
@@ -635,7 +643,6 @@ canvas {
     gap: 1vw;
     flex-wrap: wrap;
     justify-content: center;
-    margin: .5vw 0;
 }
 
 questionCard {
@@ -651,16 +658,47 @@ questionCard {
     gap: 1vw;
     font-family: brandontext;
     font-size: 1.5vw;
+    overflow: hidden;
 }
 
-questionCard div {
+.questionIcons {
     display: flex;
-    gap: 1vw;
+    gap: .5vw;
     justify-content: center;
 }
 
-questionCard img {
+.valueIcon {
     width: 6vw;
+    border-radius: 25%;
+}
+
+.comboIcon {
+    width: 1.5vw;
+}
+
+#listerPercentages {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: .5vw;
+    width: 50vw;
+}
+
+listerPercentage {
+    display: flex;
+    flex-grow: 1;
+    height: 2vw;
+    border-radius: .5vw;
+    background-color: var(--button);
+}
+
+listerPercentage div {
+    display: flex;
+    width: 100%;
+    font-size: 1vw;
+    color: var(--blackText);
+    align-items: center;
+    justify-content: center;
 }
 
 #listHolder {
@@ -671,12 +709,19 @@ questionCard img {
 }
 
 listElement {
+    display: flex;
     background-color: var(--button);
     border-radius: 1vw;
     padding: .5vw;
     font-size: 1.5vw;
     cursor: pointer;
     transition: .2s;
+    align-items: center;
+    justify-content: center;
+}
+
+#customCanvas {
+    cursor: pointer;
 }
 
 #footer {
@@ -687,7 +732,7 @@ listElement {
     margin-top: 12vw;
 }
 
-#creator {
+#footerTitle {
     font-family: cocogoose;
     text-transform: uppercase;
     font-size: 2vw;
@@ -715,7 +760,7 @@ listElement {
     box-shadow: var(--shadow)
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     html {
         padding: 0;
     }
@@ -724,11 +769,11 @@ listElement {
         padding: 2vw;
     }
 
-    titleText {
+    #title {
         font-size: 8vw;
     }
 
-    #version {
+    #versionText {
         font-size: 2.5vw;
         margin: 2vw 0 0 0.5vw;
     }
@@ -908,7 +953,7 @@ listElement {
         font-size: 6vw;
     }
 
-    #quizButtonsSwitch {
+    .switch {
         width: 20vw;
         height: 10vw;
     }
@@ -929,11 +974,11 @@ listElement {
         height: 4vw;
     }
 
-    .horizontal {
+    .toggledOff {
         left: 3.5vw;
     }
 
-    .vertical {
+    .toggledOn {
         right: 3.5vw;
     }
 
@@ -959,7 +1004,6 @@ listElement {
 
     #valueSelectors {
         gap: 2vw;
-        margin: 0;
         flex-wrap: wrap;
     }
 
@@ -971,7 +1015,6 @@ listElement {
     #matchesTools {
         width: 100%;
         gap: 2vw;
-        margin-bottom: 0;
     }
 
     #matchesTools button {
@@ -980,7 +1023,9 @@ listElement {
         font-size: 6vw;
     }
 
-    #questionCardCount {
+    #questionCardCount,
+    #proportionTypeIndicator,
+    #listerPercentages {
         font-size: 5vw;
     }
 
@@ -993,23 +1038,38 @@ listElement {
         font-size: 3vw;
     }
 
-    questionCard div {
-        gap: 1.5vw;
+    .questionIcons {
+        gap: 1vw;
     }
 
-    questionCard img {
+    .valueIcon {
         width: 10vw;
     }
 
+    .comboIcon {
+        width: 2.5vw;
+    }
+
+    #listerPercentages,
     #listHolder {
         width: 100%;
         gap: 1vw;
+    }
+
+    listerPercentage {
+        height: 8vw;
+        border-radius: .5vw;
+    }
+
+    listerPercentage div {
+        font-size: 2vw;
     }
 
     listElement {
         border-radius: 1vw;
         padding: 1vw;
         font-size: 4vw;
+        height: 12vw;
     }
 
     #footer {
@@ -1017,7 +1077,7 @@ listElement {
         margin-top: 16vw;
     }
 
-    #creator {
+    #footerTitle {
         font-size: 6vw;
     }
 

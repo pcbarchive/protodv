@@ -1,0 +1,35 @@
+## Ownership Axis
+
+Those with higher Level scores believe that productive assets are best put under collective stewardship. They tend to support worker self-management, communal land trusts, and social access to capital.
+
+Those with higher Strata scores believe that economic hierarchy organizes merit and incentives optimally. They tend to support private workplace control, claims-based property, and caste systems.
+
+## Production Axis
+
+Those with higher Command scores believe that tight coordination is needed throughout supply chains. They tend to support price controls, strategic subsidies, and industry quotas.
+
+Those with higher Demand scores believe that producers should adapt fluidly to consumption signals. They tend to support market pricing, entrepreneurial initiative, and laissez-faire.
+
+## Structure Axis
+
+Those with higher Unity scores believe that governance requires a single unambiguous chain of command. They tend to support sturdy leadership, central management, and autocracy.
+
+Those with higher Autonomy scores believe that social order must emerge deliberately from the bottom-up. They tend to support plural interests, self-organization, and anarchy.
+
+## Legality Axis
+
+Those with higher Volition scores believe that individuals should define their own commitments. They tend to support individuality, free speech, and bodily autonomy.
+
+Those with higher Obligation scores believe that being a member of society comes with inherent duties. They tend to support conformity, speech limitations, and paternalism.
+
+## Identity Axis
+
+Those with higher Inclusion scores believe that [Broad belief]. They tend to support [Moderate policy #1], [Moderate policy #2], and [Radical policy].
+
+Those with higher Supremacy scores believe that [Broad belief]. They tend to support [Moderate policy #1], [Moderate policy #2], and [Radical policy].
+
+## Culture Axis
+
+Those with higher Sanctity scores believe that time-tested norms encode irreducible wisdom. They tend to support [Moderate policy #1], [Moderate policy #2], and [Radical policy].
+
+Those with higher Novelty scores believe that [Broad belief]. They tend to support [Moderate policy #1], [Moderate policy #2], and [Radical policy].

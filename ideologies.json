@@ -1,5 +1,16 @@
 [
     {
+        "name": "Amish Model",
+        "stats": [
+            60,
+            30,
+            15,
+            25,
+            20,
+            95
+        ]
+    },
+    {
         "name": "Bonapartism",
         "stats": [
             30,

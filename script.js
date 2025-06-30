@@ -6,25 +6,22 @@ function getElements() {
     })
 }
 const elements = getElements()
-const { quizTitle, counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, orientationToggle, resultsCanvas, matchesCanvas, matchesDropdown, valueSelectors, listHolder, customCanvas } = elements
+const { quizTitle, counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, orientationToggle, resultsCanvas, matchesCanvas, matchesDropdown, valueSelectors, proportionToggle, proportionTypeIndicator, listerPercentages, listHolder, customCanvas } = elements
 const date = new Date().toISOString().slice(0, 10)
-const axes = ["Ownership", "Production", "Structure", "Legality", "Identity", "Culture"]
-const values = ["level", "strata", "command", "demand", "unity", "autonomy", "volition", "obligation", "inclusion", "supremacy", "sanctity", "novelty"]
-const valueColors = ["#ff0c57", "#1fe545", "#b900d3", "#ffc100", "#0cd1a5", "#ff3a17", "#ffff00", "#2876ff", "#ff15a8", "#ff7b09", "#9bf122", "#894efa"]
-const sections = ["homeSection", "instructionsSection", "quizSection", "matchesSection", "resultsSection", "questionsSection", "listerSection", "customSection", "aboutSection"]
 const axisWeights = [1, 0.9, 1, 0.6, 0.6, 0.7]
-let questions = []
-let progression = 0
-let answers = []
-let axisScores = [0, 0, 0, 0, 0, 0]
+let questions, ideologies
 let maxPossibleValues = [0, 0, 0, 0, 0, 0]
-let ideologies = []
 let selectedIdeology = 0
+let sortedIdeologies = []
+let listerSource = "results"
 let matchesPercentages = []
-let isToggled = false
-let resultsPercentages = [50, 50, 50, 50, 50, 50]
-let customPercentages = [50, 50, 50, 50, 50, 50]
+orientationToggle.checked = false
+let orientationIsToggled = false
+proportionToggle.checked = false
+let proportionIsToggled = false
+let proportionType = "relative"
 let currentName = "Click to edit name"
+let customPercentages = [50, 50, 50, 50, 50, 50]
 function calculateMaxValues() {
     questions.forEach(q => {
         q.effect.forEach((val, i) => {
@@ -32,10 +29,22 @@ function calculateMaxValues() {
         })
     })
 }
-function show(section) {
+function resetQuiz() {
+    progression = 0
+    answers = []
+    axisScores = [0, 0, 0, 0, 0, 0]
+    resultsPercentages = [50, 50, 50, 50, 50, 50]
+    updateLister()
+    updateQuestion()
+}
+function show(section, listerSourceInput = "results") {
     window.scrollTo({ top: 0, behavior: "instant" })
-    sections.forEach(id => document.getElementById(id).classList.remove("active"))
+    sectionNames.forEach(id => document.getElementById(id).classList.remove("active"))
     document.getElementById(section).classList.add("active")
+    listerSource = listerSourceInput
+    if (section == "listerSection") {
+        updateLister()
+    }
 }
 function updateQuestion() {
     question.textContent = questions[progression].text
@@ -75,20 +84,17 @@ function back() {
         show("instructionsSection")
     }
 }
-function resetQuiz() {
-    progression = 0
-    answers = []
-    axisScores = [0, 0, 0, 0, 0, 0]
-    resultsPercentages = [50, 70, 100, 50, 50, 50]
-    updateLister()
-    updateQuestion()
-}
-orientationToggle.addEventListener('change', function () {
-    const display = isToggled ? ["none", "flex"] : ["flex", "none"]
+orientationToggle.addEventListener("change", function () {
+    const display = orientationIsToggled ? ["none", "flex"] : ["flex", "none"]
     horizontalQuizButtons.style.display = display[0]
     verticalQuizButtons.style.display = display[1]
-    isToggled = !isToggled
-    setTimeout(() => { requestAnimationFrame(() => { quizTitle.scrollIntoView({ behavior: 'smooth' }) }) }, 25)
+    orientationIsToggled = !orientationIsToggled
+    setTimeout(() => { requestAnimationFrame(() => { quizTitle.scrollIntoView({ behavior: "smooth" }) }) }, 25)
+})
+proportionToggle.addEventListener("change", function () {
+    proportionType = proportionIsToggled ? "relative" : "absolute"
+    proportionIsToggled = !proportionIsToggled
+    updateLister()
 })
 function match(ideologyIndex) {
     if (ideologyIndex >= ideologies.length) {
@@ -110,7 +116,7 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
     let displayName
     if (canvas === resultsCanvas) {
         percentages = resultsPercentages
-        displayName = ideologies.length > 0 ? ideologies[0].name : "Your Results"
+        displayName = sortedIdeologies[0].name
         dateInfo = "Taken on "
     }
     else if (canvas === customCanvas) {
@@ -152,7 +158,7 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
             ctx.font = "24px brandontext"
             ctx.textAlign = "center"
             ctx.fillStyle = "hsl(0 0% 100%)"
-            ctx.fillText(`${axes[row]} axis`, 400, 192 + row * 112)
+            ctx.fillText(`${axisNames[row]} axis`, 400, 192 + row * 112)
         }
         for (let i = row * 2; i <= row * 2 + 1; i++) {
             const percentage = percentages[row]
@@ -171,7 +177,7 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
                 ctx.fillText(text, x, 252 + row * 112)
             }
             const icon = new Image()
-            icon.src = `./assets/icons/${values[i]}.svg`
+            icon.src = `./assets/icons/${valueNames[i]}.svg`
             icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 192 + row * 112, 96, 96)
         }
     })
@@ -224,70 +230,166 @@ function updateQuestionVisibility() {
     questionCardCount.textContent = `Showing ${visibleCount} of ${questions.length} questions`
 }
 function updateLister() {
-    ideologies.forEach((ideology, i) => {
-        const option = document.createElement("option")
-        option.value = i
-        option.textContent = ideology.name
-        matchesDropdown.appendChild(option)
+    proportionTypeIndicator.textContent = `Showing ${proportionType} percentages`
+    if (listerSource == "matches") {
+        percentages = ideologies[selectedIdeology].stats
+    } else if (listerSource == "custom") {
+        percentages = customPercentages
+    } else {
+        percentages = resultsPercentages
+    }
+    listerPercentages.innerHTML = ""
+    percentages.forEach((p, i) => {
+        const percentage = document.createElement("listerPercentage")
+        const leftDiv = document.createElement("div")
+        const rightDiv = document.createElement("div")
+        leftDiv.style.backgroundColor = valueColors[i * 2]
+        leftDiv.style.borderTopLeftRadius = ".5vw"
+        leftDiv.style.borderBottomLeftRadius = ".5vw"
+        leftDiv.textContent = p.toFixed(1) + "%"
+        rightDiv.style.backgroundColor = valueColors[i * 2 + 1]
+        rightDiv.style.borderTopRightRadius = ".5vw"
+        rightDiv.style.borderBottomRightRadius = ".5vw"
+        rightDiv.textContent = (100 - p).toFixed(1) + "%"
+        percentage.appendChild(leftDiv)
+        percentage.appendChild(rightDiv)
+        listerPercentages.appendChild(percentage)
     })
+    let maxScore = 0
+    let totalWeight = 0
+    for (let i = 0; i < 6; i++) {
+        const furthestDelta = Math.max(percentages[i], 100 - percentages[i])
+        maxScore += axisWeights[i] * Math.pow(furthestDelta / 100, 3)
+        totalWeight += axisWeights[i]
+    }
     ideologies.forEach(ideology => {
         let totalScore = 0
-        let totalWeight = 0
         for (let i = 0; i < 6; i++) {
-            const delta = Math.abs(resultsPercentages[i] - ideology.stats[i])
+            const delta = Math.abs(percentages[i] - ideology.stats[i])
             totalScore += axisWeights[i] * Math.pow(delta / 100, 3)
-            totalWeight += axisWeights[i]
         }
-        ideology.similarity = 100 - (totalScore / totalWeight * 100)
-    })
-    ideologies.sort((a, b) => b.similarity - a.similarity)
-    const minSim = ideologies[ideologies.length - 1].similarity
-    const range = 100 - minSim
-    ideologies.forEach(ideology => {
-        ideology.similarity = Math.round(((ideology.similarity - minSim) / range * 100) * 10) / 10
+        let similarity;
+        if (proportionType === "absolute") {
+            const normalizedScore = totalScore / totalWeight
+            const normalizedMax = maxScore / totalWeight
+            similarity = 100 * (1 - (normalizedScore / normalizedMax))
+        } else if (proportionType === "relative") {
+            const worstScore = Math.max(...ideologies.map(ideology => {
+                let score = 0
+                for (let i = 0; i < 6; i++) {
+                    const delta = Math.abs(percentages[i] - ideology.stats[i])
+                    score += axisWeights[i] * Math.pow(delta / 100, 3)
+                }
+                return score
+            }))
+            similarity = 100 * (1 - (totalScore / worstScore))
+        }
+        ideology.similarity = Math.round(similarity * 10) / 10
     })
     listHolder.innerHTML = ""
+    sortedIdeologies = [...ideologies].sort((a, b) => b.similarity - a.similarity)
     ideologies.forEach((ideology, i) => {
+        ideology.originalIndex = i
+    })
+    sortedIdeologies.forEach((ideology) => {
         const listElement = document.createElement("listElement")
-        listElement.textContent = `${ideology.name} (${ideology.similarity}%)`
-        listElement.addEventListener("click", () => match(i))
+        listElement.textContent = `${ideology.name} (${Math.round(ideology.similarity).toFixed(1)}%)`
+        listElement.addEventListener("click", () => match(ideology.originalIndex))
         listHolder.appendChild(listElement)
     })
 }
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const [questionsResponse, ideologiesResponse] = await Promise.all([
+        const [dataResponse, questionsResponse, ideologiesResponse] = await Promise.all([
+            fetch("./data.json"),
             fetch("./questions.json"),
             fetch("./ideologies.json")
         ])
+        const data = await dataResponse.json()
         questions = await questionsResponse.json()
         ideologies = await ideologiesResponse.json()
+        ideologies.sort((a, b) => a.name.localeCompare(b.name))
+        Object.entries(data).forEach(([key, value]) => {
+            if (typeof value === "string") {
+                document.getElementById(key).innerText = value
+            }
+        })
+        versionText.title = data.versionEasterEgg[0]
+        versionText.href = data.versionEasterEgg[1]
+        window.sectionNames = data.sectionNames
+        window.axisNames = data.axisNames
+        window.valueNames = data.valueNames
+        window.valueColors = data.valueColors
+        const cells = document.querySelectorAll("#valueGrid > cell")
+        data.axisNames.forEach((name, index) => {
+            cells[index].insertAdjacentHTML("afterbegin", name)
+        })
+        const homeButtonNames = document.querySelectorAll(".homeButton")
+        homeButtonNames.forEach((homeButtonName, i) => {
+            homeButtonName.textContent = data.homeButtonNames[i]
+        })
+        const axisExplanations = document.querySelectorAll("#axisExplanations > axisExplanation")
+        axisExplanations.forEach((axisExplanation, i) => {
+            const values = axisExplanation.querySelectorAll("value")
+            const axisArrow = axisExplanation.querySelector("axisArrow")
+            values[0].querySelector("valueName").textContent = data.valueNames[i]
+            values[0].querySelector("valueDescription").textContent = data.valueExplanations[i]
+            i++
+            const axisIndex = Array.from(axisExplanations).indexOf(axisExplanation)
+            axisArrow.innerHTML = `${data.axisNames[axisIndex]}<img src="./assets/icons/arrow.svg">`
+            values[1].querySelector("valueName").textContent = data.valueNames[i]
+            values[1].querySelector("valueDescription").textContent = data.valueExplanations[i]
+        })
+        ideologies.forEach((ideology, i) => {
+            const option = document.createElement("option")
+            option.value = i
+            option.textContent = ideology.name
+            matchesDropdown.appendChild(option)
+        })
         calculateMaxValues()
+        valueNames.forEach((value, i) => {
+            const valueSelector = document.createElement("img")
+            valueSelector.src = `./assets/icons/${value}.svg`
+            valueSelector.id = `${value}Selector`
+            if (i % 2 === 0) {
+                valueSelector.classList.add("gridIconLeft")
+            } else {
+                valueSelector.classList.add("gridIconRight")
+            }
+            valueSelector.classList.add("unselected")
+            valueSelector.addEventListener("click", () => {
+                valueSelector.classList.toggle("unselected")
+                updateQuestionVisibility()
+            })
+            valueSelectors.appendChild(valueSelector)
+        })
         questions.forEach((question, i) => {
             const questionCard = document.createElement("questionCard")
             questionCard.innerHTML = `${i + 1}. ${question.text}`
             const a = [{ p: "levelQuestion", n: "strataQuestion" }, { p: "commandQuestion", n: "demandQuestion" }, { p: "unityQuestion", n: "autonomyQuestion" }, { p: "volitionQuestion", n: "obligationQuestion" }, { p: "inclusionQuestion", n: "supremacyQuestion" }, { p: "sanctityQuestion", n: "noveltyQuestion" }]
             a.forEach(x => questionCard.classList.remove(x.p, x.n))
-            const iconContainer = document.createElement("div")
-            iconContainer.style.display = "flex"
+            const questionIcons = document.createElement("div")
+            questionIcons.classList.add("questionIcons")
             question.effect.forEach((e, j) => {
                 if (e > 0) {
                     questionCard.classList.add(a[j].p)
-                    for (let k = 0; k < e; k++)iconContainer.innerHTML += `<img src="./assets/icons/round/${values[j * 2]}.svg" class="valueIcon" data-value="${values[j * 2]}">`
+                    for (let k = 0; k < e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2]}.svg" class="valueIcon" data-value="${valueNames[j * 2]}">`
                 } else if (e < 0) {
                     questionCard.classList.add(a[j].n)
-                    for (let k = 0; k < -e; k++)iconContainer.innerHTML += `<img src="./assets/icons/round/${values[j * 2 + 1]}.svg" class="valueIcon" data-value="${values[j * 2 + 1]}">`
+                    for (let k = 0; k < -e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2 + 1]}.svg" class="valueIcon" data-value="${valueNames[j * 2 + 1]}">`
                 }
             })
-            questionCard.appendChild(iconContainer)
+            if (question.effect.filter(v => v !== 0).length > 1 || question.effect.some(v => Math.abs(v) > 1)) {
+                const children = questionIcons.children
+                for (let i = children.length - 1; i > 0; i--) {
+                    const combo = document.createElement("img")
+                    combo.src = "./assets/icons/combo.svg"
+                    combo.classList.add("comboIcon")
+                    questionIcons.insertBefore(combo, children[i])
+                }
+            }
+            questionCard.appendChild(questionIcons)
             questionsHolder.appendChild(questionCard)
-        })
-        document.querySelectorAll("#valueSelectors img").forEach(icon => {
-            icon.classList.add("unselected")
-            icon.addEventListener("click", () => {
-                icon.classList.toggle("unselected")
-                updateQuestionVisibility()
-            })
         })
         resetQuiz()
         updateQuestionVisibility()
@@ -297,7 +399,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
             drawCanvas(customCanvas)
             customCanvas.addEventListener("click", handleCustomCanvasClick)
-            show("homeSection")
+            show("questionsSection")
         })
     } catch (error) {
         console.error("Error fetching resources:", error)
