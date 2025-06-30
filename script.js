@@ -177,7 +177,7 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
                 ctx.fillText(text, x, 252 + row * 112)
             }
             const icon = new Image()
-            icon.src = `./assets/icons/${valueNames[i]}.svg`
+            icon.src = `./assets/icons/${valueNames[i].toLowerCase()}.svg`
             icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 192 + row * 112, 96, 96)
         }
     })
@@ -332,12 +332,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         axisExplanations.forEach((axisExplanation, i) => {
             const values = axisExplanation.querySelectorAll("value")
             const axisArrow = axisExplanation.querySelector("axisArrow")
-            values[0].querySelector("valueName").textContent = data.valueNames[i]
+            values[0].querySelector("valueName").textContent = data.valueNames[i].toLowerCase()
             values[0].querySelector("valueDescription").textContent = data.valueExplanations[i]
             i++
             const axisIndex = Array.from(axisExplanations).indexOf(axisExplanation)
             axisArrow.innerHTML = `${data.axisNames[axisIndex]}<img src="./assets/icons/arrow.svg">`
-            values[1].querySelector("valueName").textContent = data.valueNames[i]
+            values[1].querySelector("valueName").textContent = data.valueNames[i].toLowerCase()
             values[1].querySelector("valueDescription").textContent = data.valueExplanations[i]
         })
         ideologies.forEach((ideology, i) => {
@@ -373,10 +373,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             question.effect.forEach((e, j) => {
                 if (e > 0) {
                     questionCard.classList.add(a[j].p)
-                    for (let k = 0; k < e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2]}.svg" class="valueIcon" data-value="${valueNames[j * 2]}">`
+                    for (let k = 0; k < e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2].toLowerCase()}.svg" class="valueIcon" data-value="${valueNames[j * 2].toLowerCase()}">`
                 } else if (e < 0) {
                     questionCard.classList.add(a[j].n)
-                    for (let k = 0; k < -e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2 + 1]}.svg" class="valueIcon" data-value="${valueNames[j * 2 + 1]}">`
+                    for (let k = 0; k < -e; k++)questionIcons.innerHTML += `<img src="./assets/icons/round/${valueNames[j * 2 + 1].toLowerCase()}.svg" class="valueIcon" data-value="${valueNames[j * 2 + 1].toLowerCase()}">`
                 }
             })
             if (question.effect.filter(v => v !== 0).length > 1 || question.effect.some(v => Math.abs(v) > 1)) {
@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
             drawCanvas(customCanvas)
             customCanvas.addEventListener("click", handleCustomCanvasClick)
-            show("questionsSection")
+            show("homeSection")
         })
     } catch (error) {
         console.error("Error fetching resources:", error)
