@@ -96,7 +96,7 @@ proportionToggle.addEventListener("change", function () {
     proportionIsToggled = !proportionIsToggled
     updateLister()
 })
-function match(ideologyIndex) {
+function match(ideologyIndex, showSection) {
     if (ideologyIndex >= ideologies.length) {
         selectedIdeology = 0
     } else if (ideologyIndex < 0) {
@@ -109,29 +109,34 @@ function match(ideologyIndex) {
     const ctx = matchesCanvas.getContext("2d")
     ctx.clearRect(0, 0, matchesCanvas.width, matchesCanvas.height)
     drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
-    show("matchesSection")
+    if (showSection) { show("matchesSection") }
 }
 function drawCanvas(canvas, name = null, rowToUpdate = null) {
-    let percentages
-    let displayName
-    if (canvas === resultsCanvas) {
-        percentages = resultsPercentages
-        displayName = sortedIdeologies[0].name
-        dateInfo = "Taken on "
-    }
-    else if (canvas === customCanvas) {
-        percentages = customPercentages
-        displayName = currentName
-        dateInfo = "Generated on "
-    }
-    else {
-        percentages = matchesPercentages
-        displayName = name || "Missing name"
-        dateInfo = "Viewed on "
-    }
     const ctx = canvas.getContext("2d")
-    ctx.textRendering = "optimizeLegibility"
+    const percentages = getPercentages(canvas)
+    const displayName = getDisplayName(canvas, name)
     if (rowToUpdate === null) {
+        drawFullCanvas(ctx, canvas, displayName)
+    }
+    const rowsToDraw = rowToUpdate !== null ? [rowToUpdate] : [...Array(6).keys()]
+    rowsToDraw.forEach(row => {
+        drawRowBackground(ctx, row)
+        drawRowValues(ctx, row, percentages[row])
+        if (rowToUpdate === null) {
+            drawAxisLabel(ctx, row)
+        }
+    })
+    function getPercentages(canvas) {
+        if (canvas === resultsCanvas) return resultsPercentages
+        if (canvas === customCanvas) return customPercentages
+        return matchesPercentages
+    }
+    function getDisplayName(canvas, name) {
+        if (canvas === resultsCanvas) return sortedIdeologies[0].name
+        if (canvas === customCanvas) return currentName
+        return name || "Missing name"
+    }
+    function drawFullCanvas(ctx, canvas, displayName) {
         ctx.fillStyle = "hsl(0 0% 12.5%)"
         ctx.fillRect(0, 0, 800, 880)
         ctx.fillStyle = "hsl(0 0% 100%)"
@@ -139,48 +144,64 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
         ctx.font = "16px brandontext"
         ctx.fillText("quark88.github.io/dozenvalues", 768, 40)
         ctx.fillText("Version 7.0.0 'Lovecraft'", 768, 64)
-        ctx.fillText(dateInfo + date, 768, 88)
+        ctx.fillText(getDateInfo(canvas) + date, 768, 88)
         ctx.textAlign = "left"
         ctx.font = "64px cocogoose"
         ctx.fillText("DozenValues", 32, 80)
         ctx.font = "48px brandontext"
         ctx.fillText(displayName, 32, 144)
-        if (canvas === customCanvas) {
-            ctx.fillStyle = "rgba(0,0,0,0)"
-            ctx.fillRect(32, 144, 736, 48)
+        function getDateInfo(canvas) {
+            if (canvas === resultsCanvas) return "Taken on "
+            if (canvas === customCanvas) return "Generated on "
+            return "Viewed on "
         }
     }
-    const rowsToDraw = rowToUpdate !== null ? [rowToUpdate] : [...Array(6).keys()]
-    rowsToDraw.forEach(row => {
+    function drawRowBackground(ctx, row) {
         ctx.fillStyle = "hsl(0 0% 0%)"
         ctx.fillRect(128, 208 + row * 112, 544, 64)
-        if (rowToUpdate === null) {
-            ctx.font = "24px brandontext"
-            ctx.textAlign = "center"
-            ctx.fillStyle = "hsl(0 0% 100%)"
-            ctx.fillText(`${axisNames[row]} axis`, 400, 192 + row * 112)
-        }
-        for (let i = row * 2; i <= row * 2 + 1; i++) {
-            const percentage = percentages[row]
-            const position = i % 2
+    }
+    function drawAxisLabel(ctx, row) {
+        ctx.font = "24px brandontext"
+        ctx.textAlign = "center"
+        ctx.fillStyle = "hsl(0 0% 100%)"
+        ctx.fillText(`${axisNames[row]} axis`, 400, 192 + row * 112)
+    }
+    function drawRowValues(ctx, row, percentage) {
+        [0, 1].forEach(position => {
             const xPos = 128 + position * ((544 - 6) * (percentage / 100) + 6)
             const width = (544 - 6) * Math.abs((position * 100 - percentage) / 100)
-            ctx.fillStyle = valueColors[i]
+            ctx.fillStyle = valueColors[row * 2 + position]
             ctx.fillRect(xPos, 214 + row * 112, width, 52)
-            const p = Math.round(percentage * 10) / 10
-            const text = position === 0 ? `${p}%` : `${Math.round((100 - p) * 10) / 10}%`
-            const x = position === 0 ? 136 : 664
-            ctx.fillStyle = "hsl(0 0% 0%)"
-            ctx.font = "32px brandontext"
-            ctx.textAlign = position === 0 ? "left" : "right"
-            if ((position === 0 && p >= 25) || (position === 1 && (100 - p) >= 25)) {
-                ctx.fillText(text, x, 252 + row * 112)
+            const p = position === 0 ? percentage : 100 - percentage
+            if (p >= 25) {
+                drawPercentageText(ctx, position, row, p)
             }
-            const icon = new Image()
-            icon.src = `./assets/icons/${valueNames[i].toLowerCase()}.svg`
-            icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 192 + row * 112, 96, 96)
-        }
+            drawIcon(ctx, row, position)
+        })
+    }
+    function drawPercentageText(ctx, position, row, p) {
+        const x = position === 0 ? 136 : 664
+        ctx.fillStyle = "hsl(0 0% 0%)"
+        ctx.font = "32px brandontext"
+        ctx.textAlign = position === 0 ? "left" : "right"
+        ctx.fillText(`${p.toFixed(1)}%`, x, 252 + row * 112)
+    }
+    function drawIcon(ctx, row, position) {
+        const icon = new Image()
+        icon.src = `./assets/icons/${valueNames[row * 2 + position].toLowerCase()}.svg`
+        icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 192 + row * 112, 96, 96)
+    }
+}
+function resetCustom() {
+    currentName = "Click to edit name"
+    customPercentages = [50, 50, 50, 50, 50, 50]
+    drawCanvas(customCanvas)
+}
+function randomCustom() {
+    customPercentages.forEach((_, i) => {
+        customPercentages[i] = Math.floor((50 + (Math.random() + Math.random() - 1) * 50) / 5) * 5
     })
+    drawCanvas(customCanvas)
 }
 function handleCustomCanvasClick(e) {
     const rect = customCanvas.getBoundingClientRect()
@@ -268,7 +289,7 @@ function updateLister() {
             const delta = Math.abs(percentages[i] - ideology.stats[i])
             totalScore += axisWeights[i] * Math.pow(delta / 100, 3)
         }
-        let similarity;
+        let similarity
         if (proportionType === "absolute") {
             const normalizedScore = totalScore / totalWeight
             const normalizedMax = maxScore / totalWeight
@@ -284,7 +305,7 @@ function updateLister() {
             }))
             similarity = 100 * (1 - (totalScore / worstScore))
         }
-        ideology.similarity = Math.round(similarity * 10) / 10
+        ideology.similarity = parseFloat(similarity.toFixed(1))
     })
     listHolder.innerHTML = ""
     sortedIdeologies = [...ideologies].sort((a, b) => b.similarity - a.similarity)
@@ -294,7 +315,7 @@ function updateLister() {
     sortedIdeologies.forEach((ideology) => {
         const listElement = document.createElement("listElement")
         listElement.textContent = `${ideology.name} (${Math.round(ideology.similarity).toFixed(1)}%)`
-        listElement.addEventListener("click", () => match(ideology.originalIndex))
+        listElement.addEventListener("click", () => match(ideology.originalIndex, true))
         listHolder.appendChild(listElement)
     })
 }
@@ -402,7 +423,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.fonts.ready.then(() => {
             drawCanvas(resultsCanvas)
             drawCanvas(matchesCanvas, ideologies[selectedIdeology].name)
-            drawCanvas(customCanvas)
+            resetCustom()
             customCanvas.addEventListener("click", handleCustomCanvasClick)
             show("homeSection")
         })

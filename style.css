@@ -165,8 +165,7 @@ button,
 }
 
 button,
-button>span,
-#matchesDropdown {
+button>span {
     font-family: cocogoose;
     text-transform: uppercase;
     font-size: 2vw;
@@ -567,8 +566,8 @@ input:checked+.slider .toggledOn {
 canvas {
     outline: .25vw solid var(--button);
     outline-offset: -.25vw;
-    border-radius: 2vw;
-    width: 60vw;
+    border-radius: 1vw;
+    width: 480px;
 }
 
 #questionsSection,
@@ -581,10 +580,10 @@ canvas {
 
 #matchesTools {
     display: flex;
-    width: 60vw;
+    width: 480px;
     justify-content: space-between;
-    gap: 1vw;
-    margin-bottom: 1vw;
+    gap: .5vw;
+    margin-bottom: -.5vw;
 }
 
 #matchesTools button {
@@ -598,12 +597,15 @@ canvas {
 
 #matchesDropdown {
     flex-grow: 1;
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 1.25vw;
     text-align: left !important;
     padding-left: 1.5vw;
 }
 
 #matchesDropdown option {
-    font-family: brandontext;
+    font-family: cocogoose;
     font-size: 1vw;
     cursor: pointer;
 }
@@ -720,6 +722,18 @@ listElement {
     justify-content: center;
 }
 
+#customTools {
+    display: flex;
+    width: 480px;
+    justify-content: space-between;
+    gap: .5vw;
+    margin-bottom: -.5vw;
+}
+
+#customTools button {
+    width: 50%;
+}
+
 #customCanvas {
     cursor: pointer;
 }
@@ -760,7 +774,7 @@ listElement {
     box-shadow: var(--shadow)
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
     html {
         padding: 0;
     }
@@ -1015,6 +1029,7 @@ listElement {
     #matchesTools {
         width: 100%;
         gap: 2vw;
+        margin-bottom: 1vw;
     }
 
     #matchesTools button {
@@ -1070,6 +1085,17 @@ listElement {
         padding: 1vw;
         font-size: 4vw;
         height: 12vw;
+    }
+
+    #customTools {
+        width: 100%;
+        gap: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    #customTools button {
+        height: 16vw;
+        font-size: 6vw;
     }
 
     #footer {

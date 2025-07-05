@@ -266,17 +266,23 @@
         </label>
         <div id="proportionTypeIndicator"></div>
         <div id="listerPercentages"></div>
+        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
         <div id="listHolder"></div>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="customSection">
         <sectionTitle id="customTitle"></sectionTitle>
+        <div id="customTools">
+            <button onclick="resetCustom()">Reset</button>
+            <button onclick="randomCustom()">Random</button>
+        </div>
         <canvas id="customCanvas" width="800" height="880"></canvas>
         <button class="back" onclick="show('listerSection','custom')"><span>Lister</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="aboutSection">
         <sectionTitle id="aboutTitle"></sectionTitle>
+        <p id="aboutText"></p>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <div id="footer">
