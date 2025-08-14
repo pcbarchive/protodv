@@ -96,6 +96,19 @@ proportionToggle.addEventListener("change", function () {
     proportionIsToggled = !proportionIsToggled
     updateLister()
 })
+function archetype(results) {
+    let thirds = [0, 0, 0, 0, 0, 0]
+    for (let i in results) {
+        if (results[i] <= 30) {
+            thirds[i] = 1
+        } else if (results[i] >= 70) {
+            thirds[i] = -1
+        }
+    }
+    const nounIndex = (thirds[2] + 1) * 9 + (thirds[1] + 1) * 3 + (thirds[0] + 1)
+    const adjectiveIndex = (thirds[5] + 1) * 9 + (thirds[4] + 1) * 3 + (thirds[3] + 1)
+    return `The ${adjectives[adjectiveIndex]} ${nouns[nounIndex]}`
+}
 function match(ideologyIndex, showSection) {
     if (ideologyIndex >= ideologies.length) {
         selectedIdeology = 0
@@ -117,6 +130,13 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
     const displayName = getDisplayName(canvas, name)
     if (rowToUpdate === null) {
         drawFullCanvas(ctx, canvas, displayName)
+    } else {
+        ctx.font = "48px brandontext"
+        ctx.fillStyle = "hsl(0 0% 12.5%)"
+        ctx.fillRect(32, 106, 736, 64)
+        ctx.fillStyle = "hsl(0 0% 100%)"
+        ctx.textAlign = "left"
+        ctx.fillText(archetype(percentages), 32, 154)
     }
     const rowsToDraw = rowToUpdate !== null ? [rowToUpdate] : [...Array(6).keys()]
     rowsToDraw.forEach(row => {
@@ -138,18 +158,19 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
     }
     function drawFullCanvas(ctx, canvas, displayName) {
         ctx.fillStyle = "hsl(0 0% 12.5%)"
-        ctx.fillRect(0, 0, 800, 880)
+        ctx.fillRect(0, 0, 800, 960)
         ctx.fillStyle = "hsl(0 0% 100%)"
         ctx.textAlign = "right"
         ctx.font = "16px brandontext"
         ctx.fillText("quark88.github.io/dozenvalues", 768, 40)
-        ctx.fillText("Version 7.0.0 'Lovecraft'", 768, 64)
+        ctx.fillText('Version 7.0.0 "Lovecraft"', 768, 64)
         ctx.fillText(getDateInfo(canvas) + date, 768, 88)
         ctx.textAlign = "left"
         ctx.font = "64px cocogoose"
         ctx.fillText("DozenValues", 32, 80)
         ctx.font = "48px brandontext"
-        ctx.fillText(displayName, 32, 144)
+        ctx.fillText(archetype(percentages), 32, 154)
+        ctx.fillText(displayName, 32, 224)
         function getDateInfo(canvas) {
             if (canvas === resultsCanvas) return "Taken on "
             if (canvas === customCanvas) return "Generated on "
@@ -158,20 +179,20 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
     }
     function drawRowBackground(ctx, row) {
         ctx.fillStyle = "hsl(0 0% 0%)"
-        ctx.fillRect(128, 208 + row * 112, 544, 64)
+        ctx.fillRect(128, 288 + row * 112, 544, 64)
     }
     function drawAxisLabel(ctx, row) {
         ctx.font = "24px brandontext"
         ctx.textAlign = "center"
         ctx.fillStyle = "hsl(0 0% 100%)"
-        ctx.fillText(`${axisNames[row]} axis`, 400, 192 + row * 112)
+        ctx.fillText(`${axisNames[row]} axis`, 400, 272 + row * 112)
     }
     function drawRowValues(ctx, row, percentage) {
         [0, 1].forEach(position => {
             const xPos = 128 + position * ((544 - 6) * (percentage / 100) + 6)
             const width = (544 - 6) * Math.abs((position * 100 - percentage) / 100)
             ctx.fillStyle = valueColors[row * 2 + position]
-            ctx.fillRect(xPos, 214 + row * 112, width, 52)
+            ctx.fillRect(xPos, 294 + row * 112, width, 52)
             const p = position === 0 ? percentage : 100 - percentage
             if (p >= 25) {
                 drawPercentageText(ctx, position, row, p)
@@ -184,12 +205,12 @@ function drawCanvas(canvas, name = null, rowToUpdate = null) {
         ctx.fillStyle = "hsl(0 0% 0%)"
         ctx.font = "32px brandontext"
         ctx.textAlign = position === 0 ? "left" : "right"
-        ctx.fillText(`${p.toFixed(1)}%`, x, 252 + row * 112)
+        ctx.fillText(`${p.toFixed(1)}%`, x, 332 + row * 112)
     }
     function drawIcon(ctx, row, position) {
         const icon = new Image()
         icon.src = `./assets/icons/${valueNames[row * 2 + position].toLowerCase()}.svg`
-        icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 192 + row * 112, 96, 96)
+        icon.onload = () => ctx.drawImage(icon, 32 + position * 640, 272 + row * 112, 96, 96)
     }
 }
 function resetCustom() {
@@ -207,7 +228,7 @@ function handleCustomCanvasClick(e) {
     const rect = customCanvas.getBoundingClientRect()
     const x = (e.clientX - rect.left) * (customCanvas.width / rect.width)
     const y = (e.clientY - rect.top) * (customCanvas.height / rect.height)
-    if (x >= 32 && x <= 768 && y >= 106 && y <= 144) {
+    if (x >= 32 && x <= 768 && y >= 186 && y <= 224) {
         const newName = prompt("Enter new ideology name:", currentName)
         if (newName !== null && newName.trim() !== "") {
             currentName = newName
@@ -216,7 +237,7 @@ function handleCustomCanvasClick(e) {
         return
     }
     for (let row = 0; row < 6; row++) {
-        const rowYStart = 192 + row * 112
+        const rowYStart = 272 + row * 112
         if (y >= rowYStart && y <= rowYStart + 96) {
             if (x >= 32 && x <= 128) {
                 customPercentages[row] = Math.min(100, customPercentages[row] + 5)
@@ -228,7 +249,7 @@ function handleCustomCanvasClick(e) {
                 drawCanvas(customCanvas, currentName, row)
                 break
             }
-            else if (x >= 128 && x <= 672 && y >= 208 + row * 112 && y <= 208 + row * 112 + 64) {
+            else if (x >= 128 && x <= 672 && y >= 288 + row * 112 && y <= 288 + row * 112 + 64) {
                 const barX = x - 128
                 const percentage = Math.round((barX / 544) * 100 / 5) * 5
                 customPercentages[row] = Math.max(0, Math.min(100, percentage))
@@ -363,6 +384,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             values[1].querySelector("valueDescription").textContent = data.valueExplanations[i]
             i++
         })
+        window.adjectives = data.adjectives
+        window.nouns = data.nouns
         ideologies.forEach((ideology, i) => {
             const option = document.createElement("option")
             option.value = i
@@ -431,3 +454,43 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching resources:", error)
     }
 })
+/*document.addEventListener("keydown", event => {
+    const key = event.key
+    const isVisible = section => section.classList.contains("active")
+    if ((isVisible(customSection) || isVisible(aboutSection) || isVisible(treeSection)) && (key === "Backspace" || key === "0")) {
+        show("homeSection")
+    } else if (isVisible(home)) { // Otherwise, if the home section is displayed:
+        switch (key) {
+            // Enter and one brings you to the quiz section.
+            case "Enter":
+            case "1":
+                show("quizSection")
+                break
+            // Two brings you to the create section.
+            case "2":
+                show("createSection")
+                break
+            // Three brings you to the about section.
+            case "3":
+                show("about")
+                break
+            // Four brings you to the tree section.
+            case "4":
+                show("tree")
+                break
+        }
+    } else if (isVisible(quizSection)) { // Otherwise, if the quiz section is displayed:
+        if (key === "0" || key === "Backspace") { // Backspace or zero triggers the previous event.
+            quizBack.click()
+        } else { // Otherwise, numbers one to five triggers their corresponding button's event.
+            const buttonMap = { "1": button1, "2": button2, "3": button3, "4": button4, "5": button5 }
+            if (buttonMap[key] && buttonMap[key].style.display === "flex") {
+                buttonMap[key].click()
+            }
+        }
+    } else if (isVisible(resultsSection)) { // Otherwise, if the results section is displayed:
+        if (key === "0" || key === "Backspace") { // Zero or backspace triggers the previous event.
+            resultsBack.click()
+        }
+    }
+})*/

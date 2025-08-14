@@ -242,7 +242,7 @@
             <select id="matchesDropdown"></select>
             <button id="matchesRight" onclick="match(selectedIdeology+1)">&#x00BB;</button>
         </div>
-        <canvas id="matchesCanvas" width="800" height="880"></canvas>
+        <canvas id="matchesCanvas" width="800" height="960"></canvas>
         <button class="back" onclick="show('listerSection','matches')"><span>Lister</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
@@ -266,8 +266,10 @@
         </label>
         <div id="proportionTypeIndicator"></div>
         <div id="listerPercentages"></div>
+        <button class="back" onclick="show('customSection')"><span>Custom</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
         <div id="listHolder"></div>
+        <button class="back" onclick="show('customSection')"><span>Custom</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="customSection">
@@ -276,7 +278,7 @@
             <button onclick="resetCustom()">Reset</button>
             <button onclick="randomCustom()">Random</button>
         </div>
-        <canvas id="customCanvas" width="800" height="880"></canvas>
+        <canvas id="customCanvas" width="800" height="960"></canvas>
         <button class="back" onclick="show('listerSection','custom')"><span>Lister</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
