@@ -6,9 +6,11 @@ function getElements() {
     })
 }
 const elements = getElements()
-const { quizTitle, counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, orientationToggle, resultsCanvas, matchesCanvas, matchesDropdown, valueSelectors, proportionToggle, proportionTypeIndicator, listerPercentages, listHolder, customCanvas } = elements
+const { startButton, matchesButton, questionsButton, listerButton, customButton, aboutButton, instructionsStart, instructionsBack, quizTitle, counter, progressBarIndicator, question, verticalQuizButtons, horizontalQuizButtons, quizBack, orientationToggle, resultsCanvas, matchesLeft, matchesDropdown, matchesRight, matchesCanvas, matchesLister, matchesBack, valueSelectors, questionsBack, proportionToggle, proportionTypeIndicator, listerPercentages, listHolder, listerCustom, listerBack, resetCustomButton, randomCustomButton, customCanvas, customLister, customBack } = elements
 const date = new Date().toISOString().slice(0, 10)
 const axisWeights = [1, 0.9, 1, 0.6, 0.6, 0.7]
+const quizButtons = document.querySelectorAll(".horizontalQuizButton")
+const buttonMap = { "1": quizButtons[0], "2": quizButtons[1], "3": quizButtons[2], "4": quizButtons[3], "5": quizButtons[4] }
 let questions, ideologies
 let maxPossibleValues = [0, 0, 0, 0, 0, 0]
 let selectedIdeology = 0
@@ -454,43 +456,76 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching resources:", error)
     }
 })
-/*document.addEventListener("keydown", event => {
+document.addEventListener("keydown", event => {
     const key = event.key
     const isVisible = section => section.classList.contains("active")
-    if ((isVisible(customSection) || isVisible(aboutSection) || isVisible(treeSection)) && (key === "Backspace" || key === "0")) {
-        show("homeSection")
-    } else if (isVisible(home)) { // Otherwise, if the home section is displayed:
+    if (isVisible(homeSection)) {
         switch (key) {
-            // Enter and one brings you to the quiz section.
             case "Enter":
             case "1":
-                show("quizSection")
+                startButton.click()
                 break
-            // Two brings you to the create section.
             case "2":
-                show("createSection")
+                matchesButton.click()
                 break
-            // Three brings you to the about section.
             case "3":
-                show("about")
+                questionsButton.click()
                 break
-            // Four brings you to the tree section.
             case "4":
-                show("tree")
+                listerButton.click()
+                break
+            case "5":
+                customButton.click()
+                break
+            case "6":
+                aboutButton.click()
                 break
         }
-    } else if (isVisible(quizSection)) { // Otherwise, if the quiz section is displayed:
-        if (key === "0" || key === "Backspace") { // Backspace or zero triggers the previous event.
-            quizBack.click()
-        } else { // Otherwise, numbers one to five triggers their corresponding button's event.
-            const buttonMap = { "1": button1, "2": button2, "3": button3, "4": button4, "5": button5 }
-            if (buttonMap[key] && buttonMap[key].style.display === "flex") {
-                buttonMap[key].click()
-            }
+    } else if (isVisible(instructionsSection)) {
+        if (key === "0" || key === "Backspace") {
+            instructionsBack.click()
+        } else if (key === "1" || key === "Enter") {
+            instructionsStart.click()
         }
-    } else if (isVisible(resultsSection)) { // Otherwise, if the results section is displayed:
-        if (key === "0" || key === "Backspace") { // Zero or backspace triggers the previous event.
-            resultsBack.click()
+    } else if (isVisible(quizSection)) {
+        if (key === "0" || key === "Backspace") {
+            quizBack.click()
+        } else if (key === "1" || key === "2" || key === "3" || key === "4" || key === "5") {
+            buttonMap[key].click()
+        }
+    } else if (isVisible(matchesSection)) {
+        if (key === "ArrowLeft") {
+            matchesLeft.click()
+        } else if (key === "ArrowRight") {
+            matchesRight.click()
+        } else if (key === "1") {
+            matchesLister.click()
+        } else if (key === "Backspace" || key === "0") {
+            matchesBack.click()
+        }
+    } else if (isVisible(questionsSection)) {
+        if (key === "Backspace" || key === "0") {
+            questionsBack.click()
+        }
+    } else if (isVisible(listerSection)) {
+        if (key === "1") {
+            listerCustom.click()
+        } else if (key === "Backspace" || key === "0") {
+            listerBack.click()
+        }
+    } else if (isVisible(customSection)) {
+        if (key === "1") {
+            resetCustomButton.click()
+        } else if (key === "2") {
+            randomCustomButton.click()
+        } else if (key === "3") {
+            customLister.click()
+        } else if (key === "Backspace" || key === "0") {
+            customBack.click()
+        }
+    } else if (isVisible(aboutSection)) {
+        if (key === "Backspace" || key === "0") {
+            customBack.click()
         }
     }
-})*/
+})

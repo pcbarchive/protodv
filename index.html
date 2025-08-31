@@ -86,17 +86,17 @@
             </cell>
         </grid>
         <div id="homeButtons">
-            <button class="plus1 start" onclick="show('instructionsSection')">
+            <button id="startButton" class="plus1 start" onclick="show('instructionsSection')">
                 <span class="homeButton"></span>
             </button>
             <div class="navButtons">
-                <button class="navButton homeButton" onclick="show('matchesSection')"></button>
-                <button class="navButton homeButton" onclick="show('questionsSection')"></button>
+                <button id="matchesButton" class="navButton homeButton" onclick="show('matchesSection')"></button>
+                <button id="questionsButton" class="navButton homeButton" onclick="show('questionsSection')"></button>
             </div>
             <div class="navButtons">
-                <button class="navButton homeButton" onclick="show('listerSection')"></button>
-                <button class="navButton homeButton" onclick="show('customSection')"></button>
-                <button class="navButton homeButton" onclick="show('aboutSection')"></button>
+                <button id="listerButton" class="navButton homeButton" onclick="show('listerSection')"></button>
+                <button id="customButton" class="navButton homeButton" onclick="show('customSection')"></button>
+                <button id="aboutButton" class="navButton homeButton" onclick="show('aboutSection')"></button>
             </div>
         </div>
         <div id="explanations">
@@ -193,8 +193,8 @@
         <sectionTitle id="instructionsTitle"></sectionTitle>
         <text id="instructionsText"></text>
         <div id="instructionsButtons">
-            <button class="verticalQuizButton plus1" onclick="show('quizSection'),resetQuiz()"><span id="instructionsStartText"></span></button>
-            <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+            <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show('quizSection'),resetQuiz()"><span id="instructionsStartText"></span></button>
+            <button id="instructionsBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
         </div>
     </section>
     <section id="quizSection">
@@ -220,7 +220,7 @@
                 <button class="horizontalQuizButton minus2" onclick="addScore(-1)">&#x00AB;</button>
             </div>
         </div>
-        <button class="back" onclick="back()"><span>Back</span></button>
+        <button id="quizBack" class="back" onclick="back()"><span>Back</span></button>
         <label class="switch">
             <input type="checkbox" id="orientationToggle">
             <span class="slider">
@@ -231,7 +231,7 @@
     </section>
     <section id="resultsSection">
         <sectionTitle id="resultsTitle"></sectionTitle>
-        <canvas id="resultsCanvas" width="800" height="880"></canvas>
+        <canvas id="resultsCanvas" width="800" height="960"></canvas>
         <button class="back" onclick="show('listerSection','results')"><span>Lister</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
@@ -243,8 +243,8 @@
             <button id="matchesRight" onclick="match(selectedIdeology+1)">&#x00BB;</button>
         </div>
         <canvas id="matchesCanvas" width="800" height="960"></canvas>
-        <button class="back" onclick="show('listerSection','matches')"><span>Lister</span></button>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <button id="matchesLister" class="back" onclick="show('listerSection','matches')"><span>Lister</span></button>
+        <button id="matchesBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="questionsSection">
         <sectionTitle id="questionsTitle"></sectionTitle>
@@ -253,7 +253,7 @@
         <div id="questionCardCount"></div>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
         <div id="questionsHolder"></div>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <button id="questionsBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="listerSection">
         <sectionTitle id="listerTitle"></sectionTitle>
@@ -269,18 +269,18 @@
         <button class="back" onclick="show('customSection')"><span>Custom</span></button>
         <button class="back" onclick="show('homeSection')"><span>Back</span></button>
         <div id="listHolder"></div>
-        <button class="back" onclick="show('customSection')"><span>Custom</span></button>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <button id="listerCustom" class="back" onclick="show('customSection')"><span>Custom</span></button>
+        <button id="listerBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="customSection">
         <sectionTitle id="customTitle"></sectionTitle>
         <div id="customTools">
-            <button onclick="resetCustom()">Reset</button>
-            <button onclick="randomCustom()">Random</button>
+            <button id="resetCustomButton" onclick="resetCustom()">Reset</button>
+            <button id="randomCustomButton" onclick="randomCustom()">Random</button>
         </div>
         <canvas id="customCanvas" width="800" height="960"></canvas>
-        <button class="back" onclick="show('listerSection','custom')"><span>Lister</span></button>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <button id="customLister" class="back" onclick="show('listerSection','custom')"><span>Lister</span></button>
+        <button id="customBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
     </section>
     <section id="aboutSection">
         <sectionTitle id="aboutTitle"></sectionTitle>
