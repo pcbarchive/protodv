@@ -1,0 +1,9 @@
+#customTools{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+}
+
+#customCanvas {
+    cursor: pointer;
+}

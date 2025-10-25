@@ -1,0 +1,137 @@
+#homeValuesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2vw;
+}
+
+.gridCell {
+    display: flex;
+    flex-direction: column;
+}
+
+.gridCell h3 {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+    height: 4.5vw;
+}
+
+.gridImageContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.gridImageContainer img {
+    width: 100%;
+    cursor: pointer;
+    transition: ease-in-out .2s;
+}
+
+.gridImageContainer img:hover {
+    scale: 1.05;
+}
+
+#homeButtonContainer {
+    display: flex;
+    flex-direction: column;
+    width: 38vw;
+    gap: 1.25vw;
+}
+
+#startButton {
+    height: 5.5vw;
+    font-size: 2.5vw;
+    background-color: var(--plus1);
+}
+
+#buttonRow2,
+#buttonRow3 {
+    display: grid;
+    gap: 1vw;
+}
+
+#buttonRow2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+#buttonRow3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#buttonRow2 button,
+#buttonRow3 button {
+    height: 4vw;
+    font-size: 1.25vw;
+    border-radius: 1vw;
+}
+
+h2 {
+    font-size: 3vw;
+}
+
+p {
+    font-size: 2vw;
+}
+
+#homeAxisExplanations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.axisExplanation {
+    display: grid;
+    grid-template-columns: 1fr .4fr 1fr;
+    gap: 1vw;
+}
+
+.valueExplanation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.valueExplanation h3 {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 3vw;
+    height: 4.5vw;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.valueExplanation h3::after {
+    content: "";
+    position: absolute;
+    left: -.75vw;
+    right: -.75vw;
+    bottom: .25vw;
+    height: 0.25vw;
+    background: currentColor;
+}
+
+.valueExplanation p {
+    font-size: 1.5vw;
+}
+
+.valueExplanation h4 {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vw;
+    height: 3vw;
+}
+
+.valueExplanation img {
+    width: 100%;
+}

@@ -1,0 +1,50 @@
+#listerPercentages {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 38vw;
+    gap: 1vw;
+}
+
+.listerPercentageHolder {
+    display: flex;
+    flex-direction: row;
+    height: 2.5vw;
+}
+
+.listerPercentage {
+    display: flex;
+    width: 100%;
+    font-size: 1.25vw;
+    color: var(--blackText);
+    background-color: var(--button);
+    align-items: center;
+    justify-content: center;
+}
+
+.listerPercentageLeft {
+    border-radius: 1vw 0 0 1vw;
+}
+
+.listerPercentageRight {
+    border-radius: 0 1vw 1vw 0;
+}
+
+#listHolder {
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+    width: 38vw;
+}
+
+.listElement {
+    display: flex;
+    background-color: var(--button);
+    border-radius: 1vw;
+    height: 3vw;
+    font-size: 1.5vw;
+    cursor: pointer;
+    transition: .2s;
+    align-items: center;
+    justify-content: center;
+}
