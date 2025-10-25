@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     className: index % 2 === 0 ? "iconLeft" : "iconRight"
                 })
                 const img = Object.assign(document.createElement("img"), {
-                    src: `./assets/images/values/paired/${name}.svg`,
+                    src: `./assets/images/values/paired/${name.toLowerCase()}.svg`,
                     className: index % 2 === 0 ? "iconLeft" : "iconRight"
                 })
                 a.appendChild(img)
