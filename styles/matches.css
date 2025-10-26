@@ -1,0 +1,42 @@
+#matchesTools {
+    display: grid;
+    width: 100%;
+    max-width: 38vw;
+    height: 5vw;
+    gap: 1vw;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+#matchesTools button {
+    margin: 0;
+    height: 100%;
+    font-size: 3vw;
+}
+
+#matchesLeft::after {
+    content: "\00AB";
+}
+
+#matchesRight::after {
+    content: "\00BB";
+}
+
+#matchesDropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--button);
+    height: 100%;
+    border-radius: 1.5vw;
+    transition: .2s;
+    font-family: cocogoose;
+    font-size: 1.25vw;
+}
+
+#matchesDropdown option {
+    font-family: cocogoose;
+    font-size: 1vw;
+    cursor: pointer;
+}

@@ -1,0 +1,289 @@
+@font-face {
+    font-family: cocogoose;
+    src: url(../assets/fonts/cocogoose.otf);
+}
+
+@font-face {
+    font-family: brandonText;
+    src: url(../assets/fonts/brandonText.otf);
+}
+
+:root {
+    --html: hsl(0 0% 8%);
+    --body: hsl(0 0% 12.5%);
+    --text: hsl(0 0% 100%);
+    --blackText: hsl(0, 0%, 0%);
+    --button: hsl(0 0% 25%);
+    --shadow: 0 .25vw .5vw 0 hsla(0 0% 0% / .125), 0 .5vw 1vw 0 hsla(0 0% 0% / .125);
+    --plus2: hsl(210 100% 30%);
+    --plus1: hsl(210 75% 50%);
+    --neutral: hsl(0 0% 60%);
+    --minus1: hsl(0 75% 50%);
+    --minus2: hsl(0 100% 30%);
+}
+
+* {
+    color: var(--text);
+    font-family: brandonText;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /*outline: solid 1px #0f02 !important;
+    outline-offset: -1px !important;
+    /*For wireframe kiddies*/
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 0 6vw;
+    background-color: var(--html);
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--neutral) var(--body);
+}
+
+body {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background-color: var(--body);
+    padding: 0 4vw 2vw;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+}
+
+#homeSection {
+    gap: 2vw;
+}
+
+.activeSection {
+    display: flex;
+}
+
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+    color: var(--text);
+    text-decoration: none;
+}
+
+#titleName {
+    font-family: cocogoose;
+    font-size: 6vw;
+    display: inline-block;
+}
+
+#titleVersion {
+    font-family: cocogoose;
+    font-size: 1.5vw;
+    position: absolute;
+    margin: 1vw 0 0 0.5vw;
+}
+
+.iconLeft {
+    border-radius: 25% 0 0 25%;
+}
+
+.iconRight {
+    border-radius: 0 25% 25% 0;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--button);
+    height: 5vw;
+    border-radius: 1.25vw;
+    transition: .2s;
+}
+
+button,
+button span {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+button:hover,
+#resultsTop div:hover,
+#matchesDropdown:hover,
+.listElement:hover {
+    filter: brightness(1.15);
+    box-shadow: var(--shadow);
+}
+
+button:active,
+.listElement:active {
+    scale: .975;
+}
+
+#startButtonSpan {
+    font-size: 2.5vw;
+}
+
+#startButtonSpan,
+.back span,
+.verticalQuizButton span {
+    transition: all .25s ease-in-out;
+    position: relative;
+}
+
+#startButtonSpan::after {
+    content: "\00BB";
+    right: -2.5vw;
+    top: -.15vw;
+}
+
+#startButton:hover #startButtonSpan,
+.verticalQuizButton:hover span {
+    margin-right: 2.25vw;
+}
+
+#startButtonSpan::after,
+.back span::before,
+.verticalQuizButton span::after {
+    position: absolute;
+    opacity: 0;
+    transition: all .25s ease-in-out;
+}
+
+#startButton:hover #startButtonSpan::after,
+.back:hover span::before,
+.verticalQuizButton:hover span::after {
+    opacity: 1;
+}
+
+h1 {
+    font-family: cocogoose;
+    font-size: 2vw;
+}
+
+.back {
+    width: 12vw;
+    height: 4vw;
+}
+
+.back span {
+    font-size: 1.5vw;
+}
+
+.back span::before {
+    content: "\00AB";
+    left: -1.5vw;
+    top: -.05vw;
+}
+
+.back:hover span {
+    margin-left: 1.5vw;
+}
+
+.buttonSetup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+h3 {
+    font-family: cocogoose;
+    font-size: 1.5vw;
+}
+
+.textDisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+    background-color: var(--button);
+    width: 60vw;
+    height: 8vw;
+    border-radius: 2vw;
+    padding: 2vw;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    outline: .35vw solid var(--button);
+    outline-offset: -.35vw;
+    border-radius: 1vw;
+    max-width: 38vw;
+}
+
+.toolHolder {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 38vw;
+    gap: 1vw;
+}
+
+.toolHolder4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1vw;
+    width: 100%;
+    max-width: 38vw;
+}
+
+.toolHolder button,
+.toolHolder4 button {
+    height: 4vw;
+    font-size: 1.25vw;
+    border-radius: 1vw;
+}
+
+#footerSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-end;
+    gap: 1vw;
+    margin-top: auto;
+    padding-top: 8vw;
+}
+
+#footerTitle {
+    font-family: cocogoose;
+    text-transform: uppercase;
+    font-size: 2vw;
+}
+
+#socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+
+#socials a {
+    border-radius: 100%;
+}
+
+.socialIcon {
+    height: 4vw;
+    width: 4vw;
+    cursor: pointer;
+    border-radius: 100%;
+    transition: ease-in-out .1s;
+}
+
+.socialIcon:hover {
+    scale: 1.05;
+    box-shadow: var(--shadow)
+}

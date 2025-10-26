@@ -1,0 +1,66 @@
+#valueSelectors {
+    display: flex;
+    gap: 1vw;
+}
+
+#valueSelectors img {
+    width: calc((100% - 11vw) / 12);
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    outline: .2vw solid var(--text);
+    transition: ease-in-out .2s;
+}
+
+#valueSelectors img:hover {
+    scale: 1.05;
+    box-shadow: var(--shadow)
+}
+
+.unselected {
+    outline: none !important;
+}
+
+#questionsHolder {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1vw;
+}
+
+.questionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--button);
+    border-radius: 1vw;
+    padding: 1.5vw;
+    gap: 1vw;
+    overflow: hidden;
+}
+
+.questionText {
+    display: flex;
+    height: 4vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25vw;
+}
+
+.questionIcons {
+    display: flex;
+    height: 6vw;
+    gap: .5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.valueIcon {
+    width: 6vw;
+    border-radius: 25%;
+}
+
+.comboIcon {
+    width: 1.5vw;
+    height: 1.5vw;
+}
