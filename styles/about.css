@@ -35,4 +35,10 @@
     font-size: 1vw;
     line-height: 1vw;
     text-shadow: 0 0 .125vw #000000, 0 0 .125vw #000000, 0 0 .125vw #000000, 0 0 .125vw #000000;
+    cursor: pointer;
+}
+
+.cubeCell:hover {
+    filter: brightness(1.15);
+    box-shadow: var(--shadow);
 }

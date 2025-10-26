@@ -571,26 +571,32 @@ function createCube(textData, cube) {
     for (let x = 0; x < 27; x++) {
         const cell = document.createElement("div")
         cell.className = "cubeCell"
+        let cellTitle = ["Undefined", "Undefined", "Undefined"]
         if (cube === nounCube) cell.innerHTML = `The<br>${displayData[x]}`
         else cell.textContent = displayData[x]
         let sr = 0, sg = 0, sb = 0, count = 0
         const posInThree = x % 3
-        if (posInThree === 0) { const c = rgbColors[0]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else if (posInThree === 2) { const c = rgbColors[1]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else { sr += rgbColors[0].r + rgbColors[1].r; sg += rgbColors[0].g + rgbColors[1].g; sb += rgbColors[0].b + rgbColors[1].b; count += 2 }
+        if (posInThree === 0) { cellTitle[0] = cube === nounCube ? "Level" : "Novelty"; const c = rgbColors[0]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else if (posInThree === 2) { cellTitle[0] = cube === nounCube ? "Strata" : "Sanctity"; const c = rgbColors[1]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else { cellTitle[0] = "Neutral"; sr += rgbColors[0].r + rgbColors[1].r; sg += rgbColors[0].g + rgbColors[1].g; sb += rgbColors[0].b + rgbColors[1].b; count += 2 }
         const posInNine = Math.floor((x % 9) / 3)
-        if (posInNine === 0) { const c = rgbColors[2]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else if (posInNine === 2) { const c = rgbColors[3]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else { sr += rgbColors[2].r + rgbColors[3].r; sg += rgbColors[2].g + rgbColors[3].g; sb += rgbColors[2].b + rgbColors[3].b; count += 2 }
+        if (posInNine === 0) { cellTitle[1] = cube === nounCube ? "Command" : "Supremacy"; const c = rgbColors[2]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else if (posInNine === 2) { cellTitle[1] = cube === nounCube ? "Demand" : "Inclusion"; const c = rgbColors[3]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else { cellTitle[1] = "Neutral"; sr += rgbColors[2].r + rgbColors[3].r; sg += rgbColors[2].g + rgbColors[3].g; sb += rgbColors[2].b + rgbColors[3].b; count += 2 }
         const layerIndex = Math.floor(x / 9)
-        if (layerIndex === 0) { const c = rgbColors[4]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else if (layerIndex === 2) { const c = rgbColors[5]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
-        else { sr += rgbColors[4].r + rgbColors[5].r; sg += rgbColors[4].g + rgbColors[5].g; sb += rgbColors[4].b + rgbColors[5].b; count += 2 }
+        if (layerIndex === 0) { cellTitle[2] = cube === nounCube ? "Unity" : "Obligation"; const c = rgbColors[4]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else if (layerIndex === 2) { cellTitle[2] = cube === nounCube ? "Autonomy" : "Volition"; const c = rgbColors[5]; sr += c.r; sg += c.g; sb += c.b; count += 1 }
+        else { cellTitle[2] = "Neutral"; sr += rgbColors[4].r + rgbColors[5].r; sg += rgbColors[4].g + rgbColors[5].g; sb += rgbColors[4].b + rgbColors[5].b; count += 2 }
         const r = Math.round(sr / count)
         const g = Math.round(sg / count)
         const b = Math.round(sb / count)
-        const hex = (r << 16 | g << 8 | b).toString(16).padStart(6, "0")
-        cell.style.backgroundColor = `#${hex}`
+        cell.style.backgroundColor = `#${(r << 16 | g << 8 | b).toString(16).padStart(6, "0")}`
+        if (cube === nounCube) {
+            cellTitle = `Noun: ${cell.innerHTML.replace("<br>", " ")}\nStructure: ${cellTitle[0]}\nProduction: ${cellTitle[1]}\nPower: ${cellTitle[2]}`
+        } else {
+            cellTitle = `Adjective: ${cell.innerText}\nLegality: ${cellTitle[2]}\nIdentity: ${cellTitle[1]}\nCulture: ${cellTitle[0]}`
+        }
+        cell.title = cellTitle
         layers[Math.floor(x / 9)].appendChild(cell)
     }
     layers.forEach(l => cube.appendChild(l))
