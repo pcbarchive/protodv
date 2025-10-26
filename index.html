@@ -2,294 +2,201 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" type="image/x-icon" href="./assets/logos/icon.png">
+    <link rel="stylesheet" href="./styles/common.css">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/site/favicon.png">
     <title>DozenValues</title>
     <meta property="og:site_name" content="quark88.github.io/dozenvalues">
     <meta property="og:title" content="DozenValues">
     <meta property="og:type" content="website">
     <meta property="og:description" content="DozenValues is a political test that aims to map differing political perspectives onto six axes.">
     <meta property="og:url" content="https://quark88.github.io/dozenvalues">
-    <meta property="og:image" content="https://quark88.github.io/dozenvalues/assets/logos/embed.png">
+    <meta property="og:image" content="https://quark88.github.io/dozenvalues/assets/icons/site/embed.png">
     <meta name="theme-color" content="#00a0ff" data-react-helmet="true">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <div>
-        <div id="title"></div>
-        <a id="versionText" target="_blank"></a>
+    <div id="titleSection">
+        <div id="titleName"></div>
+        <a id="titleVersion" target="_blank"></a>
     </div>
     <section id="homeSection">
-        <sectionTitle id="homeTitle"></sectionTitle>
-        <grid id="valueGrid">
-            <cell>
-                <div class="gridIcons">
-                    <a href="#level">
-                        <img class="gridIcon gridIconLeft" src="./assets/icons/level.svg">
-                    </a>
-                    <a href="#strata">
-                        <img class="gridIcon gridIconRight" src="./assets/icons/strata.svg">
-                    </a>
-                </div>
-            </cell>
-            <cell>
-                <div class="gridIcons">
-                    <a href="#command">
-                        <img src="./assets/icons/command.svg" class="gridIcon gridIconLeft">
-                    </a>
-                    <a href="#demand">
-                        <img src="./assets/icons/demand.svg" class="gridIcon gridIconRight">
-                    </a>
-                </div>
-            </cell>
-            <cell>
-                <div class="gridIcons">
-                    <a href="#unity">
-                        <img src="./assets/icons/unity.svg" class="gridIcon gridIconLeft">
-                    </a>
-                    <a href="#autonomy">
-                        <img src="./assets/icons/autonomy.svg" class="gridIcon gridIconRight">
-                    </a>
-                </div>
-            </cell>
-            <cell>
-                <div class="gridIcons">
-                    <a href="#volition">
-                        <img src="./assets/icons/volition.svg" class="gridIcon gridIconLeft">
-                    </a>
-                    <a href="#obligation">
-                        <img src="./assets/icons/obligation.svg" class="gridIcon gridIconRight">
-                    </a>
-                </div>
-            </cell>
-            <cell>
-                <div class="gridIcons">
-                    <a href="#inclusion">
-                        <img src="./assets/icons/inclusion.svg" class="gridIcon gridIconLeft">
-                    </a>
-                    <a href="#supremacy">
-                        <img src="./assets/icons/supremacy.svg" class="gridIcon gridIconRight">
-                    </a>
-                </div>
-            </cell>
-            <cell>
-                <div class="gridIcons">
-                    <a href="#sanctity">
-                        <img src="./assets/icons/sanctity.svg" class="gridIcon gridIconLeft">
-                    </a>
-                    <a href="#novelty">
-                        <img src="./assets/icons/novelty.svg" class="gridIcon gridIconRight">
-                    </a>
-                </div>
-            </cell>
-        </grid>
-        <div id="homeButtons">
-            <button id="startButton" class="plus1 start" onclick="show('instructionsSection')">
-                <span class="homeButton"></span>
+        <h1 id="homeTitle"></h1>
+        <div id="homeValuesGrid"></div>
+        <div id="homeButtonContainer">
+            <button id="startButton">
+                <span id="startButtonSpan"></span>
             </button>
-            <div class="navButtons">
-                <button id="matchesButton" class="navButton homeButton" onclick="show('matchesSection')"></button>
-                <button id="questionsButton" class="navButton homeButton" onclick="show('questionsSection')"></button>
+            <div id="buttonRow2">
+                <button></button>
+                <button></button>
             </div>
-            <div class="navButtons">
-                <button id="listerButton" class="navButton homeButton" onclick="show('listerSection')"></button>
-                <button id="customButton" class="navButton homeButton" onclick="show('customSection')"></button>
-                <button id="aboutButton" class="navButton homeButton" onclick="show('aboutSection')"></button>
+            <div id="buttonRow3">
+                <button></button>
+                <button></button>
+                <button></button>
             </div>
         </div>
-        <div id="explanations">
-            <h2 id="testExplanationTitle"></h2>
-            <p id="textExplanationText"></p>
-            <h2 id="valueExplanationTitle"></h2>
-            <p id="valueExplanationText"></p>
-            <div id="axisExplanations">
-                <axisExplanation>
-                    <value>
-                        <valueName id="level"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="strata"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                </axisExplanation>
-                <axisExplanation>
-                    <value>
-                        <valueName id="command"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="demand"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                </axisExplanation>
-                <axisExplanation>
-                    <value>
-                        <valueName id="unity"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="autonomy"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                </axisExplanation>
-                <axisExplanation>
-                    <value>
-                        <valueName id="volition"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="obligation"></valueName>
-                        <valueDescription>
-                        </valueDescription>
-                    </value>
-                </axisExplanation>
-                <axisExplanation>
-                    <value>
-                        <valueName id="inclusion"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="supremacy"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                </axisExplanation>
-                <axisExplanation>
-                    <value>
-                        <valueName id="sanctity"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                    <axisArrow>
-                        <img src="./assets/icons/arrow.svg">
-                    </axisArrow>
-                    <value>
-                        <valueName id="novelty"></valueName>
-                        <valueDescription></valueDescription>
-                    </value>
-                </axisExplanation>
-            </div>
-            <h2 id="matchExplanationTitle"></h2>
-            <p id="matchExplanationText"></p>
-        </div>
+        <h2 id="testExplanationTitle"></h2>
+        <p id="testExplanationText"></p>
+        <h2 id="valueExplanationTitle"></h2>
+        <p id="valueExplanationText"></p>
+        <div id="homeAxisExplanations"></div>
+        <h2 id="matchExplanationTitle"></h2>
+        <p id="matchExplanationText"></p>
     </section>
     <section id="instructionsSection">
-        <sectionTitle id="instructionsTitle"></sectionTitle>
-        <text id="instructionsText"></text>
-        <div id="instructionsButtons">
-            <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show('quizSection'),resetQuiz()"><span id="instructionsStartText"></span></button>
-            <button id="instructionsBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <h1 id="instructionsTitle"></h1>
+        <div class="buttonSetup">
+            <div class="textDisplay" id="instructionsText">Loading...</div>
+            <div id="instructionsButtons">
+                <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show(quizSection, instructionsSection);resetQuiz()">
+                    <span id="instructionsStartText"></span>
+                </button>
+                <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show(quizSection, instructionsSection);resetQuiz('shuffled')">
+                    <span id="instructionsStartTextShuffled"></span>
+                </button>
+                <button class="back"><span>Back</span></button>
+            </div>
         </div>
     </section>
     <section id="quizSection">
-        <sectionTitle id="quizTitle"></sectionTitle>
-        <h3 id="counter">Loading...</h3>
-        <div id="progressBar">
-            <div id="progressBarIndicator"></div>
-        </div>
-        <text id="question">Loading...</text>
-        <div id="verticalQuizButtons">
-            <button class="verticalQuizButton plus2" onclick="addScore(1)"><span>Strongly agree</span></button>
-            <button class="verticalQuizButton plus1" onclick="addScore(.5)"><span>Agree</span></button>
-            <button class="verticalQuizButton neutral" onclick="addScore(0)"><span>Neutral</span></button>
-            <button class="verticalQuizButton minus1" onclick="addScore(-.5)"><span>Disagree</span></button>
-            <button class="verticalQuizButton minus2" onclick="addScore(-1)"><span>Strongly disagree</span></button>
-        </div>
-        <div id="horizontalQuizButtons">
-            <div>
-                <button class="horizontalQuizButton plus2" onclick="addScore(1)">&#x00BB;</button>
-                <button class="horizontalQuizButton plus1" onclick="addScore(.5)">&gt;</button>
-                <button class="horizontalQuizButton neutral" onclick="addScore(0)">&#x25CF;</button>
-                <button class="horizontalQuizButton minus1" onclick="addScore(-.5)">&lt;</button>
-                <button class="horizontalQuizButton minus2" onclick="addScore(-1)">&#x00AB;</button>
+        <h1 id="quizTitle"></h1>
+        <div class="buttonSetup">
+            <h3 id="counter">Loading...</h3>
+            <div id="progressBar">
+                <div id="progressBarIndicator"></div>
             </div>
+            <div class="textDisplay" id="question">Loading...</div>
+            <div id="verticalQuizButtons">
+                <button class="verticalQuizButton plus2" onclick="addScore(1)"><span>Strongly agree</span></button>
+                <button class="verticalQuizButton plus1" onclick="addScore(.5)"><span>Agree</span></button>
+                <button class="verticalQuizButton neutral" onclick="addScore(0)"><span>Neutral</span></button>
+                <button class="verticalQuizButton minus1" onclick="addScore(-.5)"><span>Disagree</span></button>
+                <button class="verticalQuizButton minus2" onclick="addScore(-1)"><span>Strongly disagree</span></button>
+            </div>
+            <div id="horizontalQuizButtons">
+                <div>
+                    <button class="horizontalQuizButton minus2" onclick="addScore(-1)">&#x00AB;</button>
+                    <button class="horizontalQuizButton minus1" onclick="addScore(-.5)">&lt;</button>
+                    <button class="horizontalQuizButton neutral" onclick="addScore(0)">&#x25CF;</button>
+                    <button class="horizontalQuizButton plus1" onclick="addScore(.5)">&gt;</button>
+                    <button class="horizontalQuizButton plus2" onclick="addScore(1)">&#x00BB;</button>
+                </div>
+            </div>
+            <button class="back"><span>Back</span></button>
+            <label class="switch">
+                <input type="checkbox" id="orientationToggle">
+                <span class="slider">
+                    <img src="./assets/images/interface/toggle/horizontal.svg" class="icon toggledOff">
+                    <img src="./assets/images/interface/toggle/vertical.svg" class="icon toggledOn">
+                </span>
+            </label>
         </div>
-        <button id="quizBack" class="back" onclick="back()"><span>Back</span></button>
-        <label class="switch">
-            <input type="checkbox" id="orientationToggle">
-            <span class="slider">
-                <img src="./assets/icons/horizontal.svg" class="icon toggledOff">
-                <img src="./assets/icons/vertical.svg" class="icon toggledOn">
-            </span>
-        </label>
     </section>
     <section id="resultsSection">
-        <sectionTitle id="resultsTitle"></sectionTitle>
+        <h1 id="resultsTitle"></h1>
         <canvas id="resultsCanvas" width="800" height="960"></canvas>
-        <button class="back" onclick="show('listerSection','results')"><span>Lister</span></button>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <h2 id="topIdeology">Your ideology: Loading...</h2>
+        <h3 id="nextIdeologies">Next ideologies: Loading...</h3>
+        <h2 id="topArchetype">Your archetype: Loading...</h2>
+        <div class="toolHolder4">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(listerSection);updateLister('results')">Lister</button>
+            <button onclick="show(customSection)">Custom</button>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
     <section id="matchesSection">
-        <sectionTitle id="matchesTitle"></sectionTitle>
+        <h1 id="matchesTitle"></h1>
         <div id="matchesTools">
-            <button id="matchesLeft" onclick="match(selectedIdeology-1)">&#x00AB;</button>
+            <button id="matchesLeft" onclick="match(selectedIdeology-1)"></button>
             <select id="matchesDropdown"></select>
-            <button id="matchesRight" onclick="match(selectedIdeology+1)">&#x00BB;</button>
+            <button id="matchesRight" onclick="match(selectedIdeology+1)"></button>
         </div>
         <canvas id="matchesCanvas" width="800" height="960"></canvas>
-        <button id="matchesLister" class="back" onclick="show('listerSection','matches')"><span>Lister</span></button>
-        <button id="matchesBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div class="toolHolder">
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(listerSection);updateLister('matches')">Lister</button>
+            <button onclick="show(customSection)">Custom</button>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
     <section id="questionsSection">
-        <sectionTitle id="questionsTitle"></sectionTitle>
-        <div id="valueSelectors">
+        <h1 id="questionsTitle"></h1>
+        <div id="valueSelectors"></div>
+        <h3 id="questionCardCount"></h3>
+        <div class="toolHolder">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(listerSection)">Lister</button>
+            <button onclick="show(customSection)">Custom</button>
         </div>
-        <div id="questionCardCount"></div>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <button class="back"><span>Back</span></button>
         <div id="questionsHolder"></div>
-        <button id="questionsBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div class="toolHolder">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(listerSection)">Lister</button>
+            <button onclick="show(customSection)">Custom</button>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
     <section id="listerSection">
-        <sectionTitle id="listerTitle"></sectionTitle>
+        <h1 id="listerTitle"></h1>
+        <div id="listerPercentages"></div>
+        <div class="toolHolder">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(customSection)">Custom</button>
+        </div>
         <label class="switch">
             <input type="checkbox" id="proportionToggle">
             <span class="slider">
-                <img src="./assets/icons/absolute.svg" class="icon toggledOff">
-                <img src="./assets/icons/relative.svg" class="icon toggledOn">
+                <img src="./assets/images/interface/toggle/absolute.svg" class="icon toggledOff">
+                <img src="./assets/images/interface/toggle/relative.svg" class="icon toggledOn">
             </span>
         </label>
-        <div id="proportionTypeIndicator"></div>
-        <div id="listerPercentages"></div>
-        <button class="back" onclick="show('customSection')"><span>Custom</span></button>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <h3 id="proportionTypeIndicator">Loading...</h3>
         <div id="listHolder"></div>
-        <button id="listerCustom" class="back" onclick="show('customSection')"><span>Custom</span></button>
-        <button id="listerBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div class="toolHolder">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(customSection)">Custom</button>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
     <section id="customSection">
-        <sectionTitle id="customTitle"></sectionTitle>
+        <h1 id="customTitle"></h1>
         <div id="customTools">
-            <button id="resetCustomButton" onclick="resetCustom()">Reset</button>
-            <button id="randomCustomButton" onclick="randomCustom()">Random</button>
+            <button onclick="resetCustom()">Reset</button>
+            <button onclick="randomCustom()">Random</button>
         </div>
         <canvas id="customCanvas" width="800" height="960"></canvas>
-        <button id="customLister" class="back" onclick="show('listerSection','custom')"><span>Lister</span></button>
-        <button id="customBack" class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div class="toolHolder">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(listerSection);updateLister('custom')">Lister</button>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
     <section id="aboutSection">
-        <sectionTitle id="aboutTitle"></sectionTitle>
+        <h1 id="aboutTitle"></h1>
         <p id="aboutText"></p>
-        <button class="back" onclick="show('homeSection')"><span>Back</span></button>
+        <div id="cubeHolder">
+            <div id="nounCube"></div>
+            <div id="adjectiveCube"></div>
+        </div>
+        <button class="back"><span>Back</span></button>
     </section>
-    <div id="footer">
+    <div id="footerSection">
         <a id="footerTitle" title="Quark on GitHub" target="_blank" href="https://github.com/QUARK88"></a>
-        <div id="socials"><img title="Quark on Discord" src="./assets/logos/discord.svg" class="socialIcon" onclick="navigator.clipboard.writeText('realquark');confirm('Discord tag copied! (realquark)')"><a target="_blank" href="https://x.com/RenaudBeaulieuQ"><img title="Quark on X" src="./assets/logos/x.svg" class="socialIcon"></a><img title="Quark on Tlon" src="./assets/logos/tlon.svg" class="socialIcon" onclick="navigator.clipboard.writeText('~worlyt-nillex');confirm('Urbit ID copied! (~worlyt-nillex)')" </img><a target="_blank" href="https://www.reddit.com/user/QK_QUARK88"><img title="Quark on Reddit" src="./assets/logos/reddit.svg" class="socialIcon"></a></div>
+        <div id="socials">
+            <img title="Quark on Discord" src="./assets/icons/socials/discord.svg" class="socialIcon" onclick="navigator.clipboard.writeText('realquark');confirm('Discord tag copied! (realquark)')">
+            <a target="_blank" href="https://x.com/RenaudBeaulieuQ"><img title="Quark on X" src="./assets/icons/socials/x.svg" class="socialIcon"></a>
+            <img title="Quark on Tlon" src="./assets/icons/socials/tlon.svg" class="socialIcon" onclick="navigator.clipboard.writeText('~worlyt-nillex');confirm('Urbit ID copied! (~worlyt-nillex)')">
+            <a target="_blank" href="https://www.reddit.com/user/QK_QUARK88"><img title="Quark on Reddit" src="./assets/icons/socials/reddit.svg" class="socialIcon"></a>
+        </div>
     </div>
 </body>
 <script src="./script.js"></script>

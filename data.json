@@ -1,7 +1,7 @@
 {
-    "title": "DozenValues",
-    "versionText": "V7.0.0",
-    "versionEasterEgg": [
+    "titleName": "DozenValues",
+    "titleVersion": "V7.0.0",
+    "titleVersionEasterEgg": [
         "🐍",
         "https://youtu.be/5YMAdB7KbVg?t=42"
     ],
@@ -10,8 +10,8 @@
         "homeSection",
         "instructionsSection",
         "quizSection",
-        "matchesSection",
         "resultsSection",
+        "matchesSection",
         "questionsSection",
         "listerSection",
         "customSection",
@@ -62,7 +62,7 @@
         "About"
     ],
     "testExplanationTitle": "What is DozenValues?",
-    "textExplanationText": "Whatever.",
+    "testExplanationText": "DozenValues is a political test that aims to map differing political perspectives onto six axes. At the end of the quiz, you will be shown your results. Since some questions affect multiple axes, it is very unlikely that you get 100% for any value, so don't be alarmed if your results are more moderate than you expected. Remember to answer honestly for greater accuracy.",
     "valueExplanationTitle": "What are the 12 values?",
     "valueExplanationText": "Every value is paired to its opposite so as to form 6 independent axes:",
     "valueExplanations": [
@@ -82,8 +82,9 @@
     "matchExplanationTitle": "What is the closest match?",
     "matchExplanationText": "Once you finish the quiz, your answers will be computed, and an ideology will be chosen from a list to fit as closely as possible the percentages you have been given.",
     "instructionsTitle": "Instructions",
-    "instructionsText": "You will be presented with 132 statements and a spectrum ranging from Agree to Disagree. Click the button that fits your opinion.",
+    "instructionsText": "You will be presented with statements and a spectrum of options ranging from Agree to Disagree. Click the button that best fits your opinion of the statement.",
     "instructionsStartText": "Got it",
+    "instructionsStartTextShuffled": "Got it (Shuffled)",
     "quizTitle": "Quiz",
     "resultsTitle": "Results",
     "adjectives": [
@@ -118,7 +119,7 @@
     "nouns": [
         "Vanguardist",
         "Bureaucrat",
-        "Monopolist",
+        "Magnate",
         "Custodian",
         "Commander",
         "Regent",
@@ -136,14 +137,15 @@
         "Builder",
         "Insurgent",
         "Organizer",
-        "Chief",
+        "Boss",
         "Vigilante",
-        "Countryman",
+        "Dissenter",
         "Lord",
         "Rebel",
-        "Bohemian",
+        "Craftsman",
         "Rancher"
     ],
+    "resultsTopTitle": "Top 5 matches:",
     "matchesTitle": "Matches",
     "questionsTitle": "Questions",
     "listerTitle": "Lister",
