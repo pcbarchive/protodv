@@ -8,7 +8,7 @@
     height: auto;
     object-fit: cover;
     cursor: pointer;
-    outline: 2px solid var(--text);
+    outline: .2vw solid var(--text);
     transition: ease-in-out .2s;
 }
 

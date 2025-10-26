@@ -216,19 +216,12 @@ h3 {
     overflow: hidden;
 }
 
-.canvasHolder {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
-    width: 100%;
-    max-width: 600px;
-}
-
 canvas {
     width: 100%;
-    outline: 4px solid var(--button);
-    outline-offset: -4px;
+    outline: .35vw solid var(--button);
+    outline-offset: -.35vw;
     border-radius: 1vw;
+    max-width: 38vw;
 }
 
 .toolHolder {
@@ -238,7 +231,16 @@ canvas {
     gap: 1vw;
 }
 
-.toolHolder button {
+.toolHolder4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1vw;
+    width: 100%;
+    max-width: 38vw;
+}
+
+.toolHolder button,
+.toolHolder4 button {
     height: 4vw;
     font-size: 1.25vw;
     border-radius: 1vw;

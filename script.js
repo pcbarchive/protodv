@@ -12,6 +12,7 @@ const elements = getElements()
 let data = {}
 // The quiz questions.
 var questions = []
+var orderedQuestions = questions
 // The possible ideologies.
 let ideologies = []
 // The axis weights.
@@ -267,7 +268,10 @@ function show(section, back = homeSection) {
     })
 }
 // Empties the quiz's accumulated data.
-function resetQuiz() {
+function resetQuiz(questionOrder) {
+    if (questionOrder === "shuffled") {
+        questions = questions.reduce((a, _, i) => (j = Math.floor(Math.random() * (i + 1)), [a[i], a[j]] = [a[j], a[i]], a), [...questions])
+    }
     answers = []
     updateQuestion()
     axisScores = [0, 0, 0, 0, 0, 0]
@@ -533,6 +537,9 @@ function updateLister(listerSource) {
         listHolder.appendChild(listElement)
     })
     resultIdeology = sortedIdeologies[0].name
+    topIdeology.innerText = `Your ideology: ${resultIdeology}`
+    nextIdeologies.innerText = `Next ideologies: ${sortedIdeologies[1].name}, ${sortedIdeologies[2].name}, ${sortedIdeologies[3].name}, ${sortedIdeologies[4].name}`
+    topArchetype.innerText = `Your archetype: ${archetype(resultsPercentages)}`
 }
 function createCube(textData, cube) {
     const layers = [0, 1, 2].map(() => {

@@ -84,6 +84,7 @@
     "instructionsTitle": "Instructions",
     "instructionsText": "You will be presented with statements and a spectrum of options ranging from Agree to Disagree. Click the button that best fits your opinion of the statement.",
     "instructionsStartText": "Got it",
+    "instructionsStartTextShuffled": "Got it (Shuffled)",
     "quizTitle": "Quiz",
     "resultsTitle": "Results",
     "adjectives": [

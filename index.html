@@ -51,8 +51,11 @@
         <div class="buttonSetup">
             <div class="textDisplay" id="instructionsText">Loading...</div>
             <div id="instructionsButtons">
-                <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show(quizSection, instructionsSection), resetQuiz()">
+                <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show(quizSection, instructionsSection);resetQuiz()">
                     <span id="instructionsStartText"></span>
+                </button>
+                <button id="instructionsStart" class="verticalQuizButton plus1" onclick="show(quizSection, instructionsSection);resetQuiz('shuffled')">
+                    <span id="instructionsStartTextShuffled"></span>
                 </button>
                 <button class="back"><span>Back</span></button>
             </div>
@@ -94,21 +97,26 @@
     </section>
     <section id="resultsSection">
         <h1 id="resultsTitle"></h1>
-        <div class="canvasHolder">
-            <canvas id="resultsCanvas" width="800" height="960"></canvas>
+        <canvas id="resultsCanvas" width="800" height="960"></canvas>
+        <h2 id="topIdeology">Your ideology: Loading...</h2>
+        <h3 id="nextIdeologies">Next ideologies: Loading...</h3>
+        <h2 id="topArchetype">Your archetype: Loading...</h2>
+        <div class="toolHolder4">
+            <button onclick="show(matchesSection)">Matches</button>
+            <button onclick="show(questionsSection)">Questions</button>
+            <button onclick="show(listerSection);updateLister('results')">Lister</button>
+            <button onclick="show(customSection)">Custom</button>
         </div>
         <button class="back"><span>Back</span></button>
     </section>
     <section id="matchesSection">
         <h1 id="matchesTitle"></h1>
-        <div class="canvasHolder">
-            <div id="matchesTools">
-                <button id="matchesLeft" onclick="match(selectedIdeology-1)"></button>
-                <select id="matchesDropdown"></select>
-                <button id="matchesRight" onclick="match(selectedIdeology+1)"></button>
-            </div>
-            <canvas id="matchesCanvas" width="800" height="960"></canvas>
+        <div id="matchesTools">
+            <button id="matchesLeft" onclick="match(selectedIdeology-1)"></button>
+            <select id="matchesDropdown"></select>
+            <button id="matchesRight" onclick="match(selectedIdeology+1)"></button>
         </div>
+        <canvas id="matchesCanvas" width="800" height="960"></canvas>
         <div class="toolHolder">
             <button onclick="show(questionsSection)">Questions</button>
             <button onclick="show(listerSection);updateLister('matches')">Lister</button>
@@ -160,13 +168,11 @@
     </section>
     <section id="customSection">
         <h1 id="customTitle"></h1>
-        <div class="canvasHolder">
-            <div id="customTools">
-                <button onclick="resetCustom()">Reset</button>
-                <button onclick="randomCustom()">Random</button>
-            </div>
-            <canvas id="customCanvas" width="800" height="960"></canvas>
+        <div id="customTools">
+            <button onclick="resetCustom()">Reset</button>
+            <button onclick="randomCustom()">Random</button>
         </div>
+        <canvas id="customCanvas" width="800" height="960"></canvas>
         <div class="toolHolder">
             <button onclick="show(matchesSection)">Matches</button>
             <button onclick="show(questionsSection)">Questions</button>
