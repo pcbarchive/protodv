@@ -12,7 +12,7 @@ const elements = getElements()
 let data = {}
 // The quiz questions.
 var questions = []
-var orderedQuestions = questions
+var orderedQuestions = []
 // The possible ideologies.
 let ideologies = []
 // The axis weights.
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Converts the JSONs to arrays.
         data = await dataResponse.json()
         questions = await questionsResponse.json()
+        orderedQuestions = questions
         ideologies = await ideologiesResponse.json()
         // Calculates the maximum possible values for every axis.
         questions.forEach(q => {
