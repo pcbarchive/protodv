@@ -66,7 +66,7 @@
     ]
   },
   {
-    "text": "Bosses know what's best for their workers.",
+    "text": "Bosses know what's best for their employees.",
     "effect": [
       -1,
       0,
@@ -264,7 +264,7 @@
     ]
   },
   {
-    "text": "The populus cannot govern themselves.",
+    "text": "Not organizing combatants into a standing army is detrimental to all.",
     "effect": [
       0,
       0,
@@ -341,7 +341,7 @@
     ]
   },
   {
-    "text": "Governmental surveillance is an unnecessary evil.",
+    "text": "Autonomy 2",
     "effect": [
       0,
       0,
@@ -352,7 +352,7 @@
     ]
   },
   {
-    "text": "No one but me can adequately represent my political views.",
+    "text": "Autonomy 3",
     "effect": [
       0,
       0,
@@ -484,7 +484,7 @@
     ]
   },
   {
-    "text": "The worst criminals should be publicly executed.",
+    "text": ".",
     "effect": [
       0,
       0,
@@ -682,7 +682,7 @@
     ]
   },
   {
-    "text": "Sanctity 3",
+    "text": "Biological parenting is superior to adoptive or communal rearing.",
     "effect": [
       0,
       0,
@@ -759,7 +759,7 @@
     ]
   },
   {
-    "text": "Biological parenting is no better than adoption or communal parenting.",
+    "text": "Novelty 4",
     "effect": [
       0,
       0,

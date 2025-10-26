@@ -1,5 +1,27 @@
 [
     {
+        "name": "Absolute Monarchy",
+        "stats": [
+            15,
+            60,
+            85,
+            30,
+            40,
+            65
+        ]
+    },
+    {
+        "name": "Agorism",
+        "stats": [
+            40,
+            5,
+            5,
+            95,
+            55,
+            40
+        ]
+    },
+    {
         "name": "Amish Model",
         "stats": [
             60,
@@ -11,11 +33,132 @@
         ]
     },
     {
-        "name": "Bonapartism",
+        "name": "Anarcho-Capitalism",
+        "stats": [
+            20,
+            5,
+            10,
+            95,
+            50,
+            40
+        ]
+    },
+    {
+        "name": "Anarcho-Communism",
+        "stats": [
+            95,
+            80,
+            10,
+            75,
+            75,
+            40
+        ]
+    },
+    {
+        "name": "Anarcho-Distributism",
+        "stats": [
+            60,
+            35,
+            5,
+            50,
+            65,
+            75
+        ]
+    },
+    {
+        "name": "Anarcho-Primitivism",
+        "stats": [
+            75,
+            50,
+            5,
+            75,
+            60,
+            95
+        ]
+    },
+    {
+        "name": "Anarcho-Syndicalism",
+        "stats": [
+            80,
+            60,
+            5,
+            60,
+            65,
+            40
+        ]
+    },
+    {
+        "name": "Austrolibertarianism",
+        "stats": [
+            15,
+            5,
+            30,
+            85,
+            45,
+            55
+        ]
+    },
+    {
+        "name": "Autocratic Capitalism",
+        "stats": [
+            15,
+            25,
+            80,
+            60,
+            55,
+            40
+        ]
+    },
+    {
+        "name": "Autonomism",
+        "stats": [
+            95,
+            75,
+            5,
+            85,
+            75,
+            40
+        ]
+    },
+    {
+        "name": "Barracks Communism",
+        "stats": [
+            85,
+            95,
+            15,
+            10,
+            65,
+            35
+        ]
+    },
+    {
+        "name": "Bismarckism",
         "stats": [
             30,
-            60,
-            80,
+            75,
+            70,
+            20,
+            30,
+            60
+        ]
+    },
+    {
+        "name": "Blanquism",
+        "stats": [
+            70,
+            90,
+            85,
+            25,
+            45,
+            30
+        ]
+    },
+    {
+        "name": "Bonapartism",
+        "stats": [
+            35,
+            65,
+            85,
             30,
             45,
             55
