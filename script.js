@@ -271,7 +271,9 @@ function show(section, back = homeSection) {
 function resetQuiz(questionOrder) {
     if (questionOrder === "shuffled") {
         questions = questions.reduce((a, _, i) => (j = Math.floor(Math.random() * (i + 1)), [a[i], a[j]] = [a[j], a[i]], a), [...questions])
-    }
+    } else (
+        questions = orderedQuestions
+    )
     answers = []
     updateQuestion()
     axisScores = [0, 0, 0, 0, 0, 0]
